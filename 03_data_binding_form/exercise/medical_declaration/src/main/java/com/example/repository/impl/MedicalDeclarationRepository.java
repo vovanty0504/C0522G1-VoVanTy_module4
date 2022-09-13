@@ -12,10 +12,6 @@ public class MedicalDeclarationRepository implements IMedicalDeclarationReposito
     private static List<MedicalDeclaration> medicalDeclarationList = new ArrayList<>();
 
     static {
-        medicalDeclarationList.add(new MedicalDeclaration("Van Ty", "05/04/2001", "Nam", "Việt nam", 241399524, "tàu bay", "81B1-28117", 10, "01-01-2020", "02/01/2080", "none"));
-        medicalDeclarationList.add(new MedicalDeclaration("Trung Thuyen", "01/01/1996", "Nam", "Việt nam", 241399524, "Xe ô tô", "75H-2121", 5, "01-01-2020", "03/01/2080", "none"));
-        medicalDeclarationList.add(new MedicalDeclaration("Dai Loi", "01/01/1995", "Nam", "Việt nam", 241399524, "Xe ô tô", "43H-10257", 4, "01-01-2020", "04/01/2080", "none"));
-        medicalDeclarationList.add(new MedicalDeclaration("Thuy Tien", "20/03/2000", "Nam", "Việt nam", 241399524, "tàu thuyền", "92H-10157", 8, "01-01-2020", "04/01/2080", "none"));
     }
 
     @Override
@@ -36,6 +32,25 @@ public class MedicalDeclarationRepository implements IMedicalDeclarationReposito
         travelInformationList.add("o to");
         travelInformationList.add("khac");
         return travelInformationList;
+    }
+
+    @Override
+    public List<String> country() {
+        List<String> country = new ArrayList<>();
+        country.add("viet nam");
+        country.add("thai lan");
+        country.add("han quoc ");
+        country.add("nhat ban");
+        return country;
+    }
+
+    @Override
+    public List<String> gender() {
+        List<String> gender = new ArrayList<>();
+        gender.add("nam");
+        gender.add("nu");
+        gender.add("LGBT");
+        return gender;
     }
 
 

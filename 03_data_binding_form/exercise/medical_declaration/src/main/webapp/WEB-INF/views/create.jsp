@@ -19,7 +19,7 @@
 
 <p style="color: red">Khuyến cáo: Khai báo thông tin sai là vi phạm pháp luật Việt Nam và có thể xử lý hình sự</p>
 
-<form:form action="/create" modelAttribute="medicalDeclaration" method="post">
+<form:form action="create" modelAttribute="medicalDeclaration" method="post">
     <p>Họ và tên(ghi chữ IN HOA)</p>
     <form:input size="100%" path="name"/>
 
@@ -31,13 +31,13 @@
         </tr>
         <tr>
             <td>
-                <form:select cssStyle="width: 33%" path="dayOfBirth"/>
+                <form:input cssStyle="width: 30%" path="dayOfBirth"/>
             </td>
             <td>
-                <form:select cssStyle="width: 33%" path="gender" />
+                <form:select cssStyle="width: 30%" path="gender" items="${gender}"/>
             </td>
             <td>
-                <form:select cssStyle="width: 33%" path="country"/>
+                <form:select cssStyle="width: 30%" path="country" items="${country}"/>
             </td>
         </tr>
     </table>
@@ -46,7 +46,7 @@
     <form:input size="100%" path="idCard"/>
 
     <p>Thông tin đi lại</p>
-    <form:radiobuttons path="travelInformation" items="${travelInformationList}"/>
+    <form:radiobuttons path="travelInformation" items="${travelInformationList}" />
 
     <table style="width: 100%">
         <tr>
@@ -63,16 +63,31 @@
 
     <table style="width: 100%">
         <tr>
-            <td colspan="3">Ngày khởi hành</td>
-            <td colspan="3">Ngày kết thúc</td>
+            <td colspan="1">Ngày khởi hành</td>
+            <td colspan="1">Tháng khởi hành</td>
+            <td colspan="1">Năm khởi hành</td>
+            <td colspan="1">Ngày kết thúc</td>
+            <td colspan="1">Tháng kết thúc</td>
+            <td colspan="1">Năm kết thúc</td>
         </tr>
         <td>
-            <form:select cssStyle="width: 33%" path="startDay" />
+            <form:input cssStyle="width: 30%" path="departureDay"/>
         </td>
         <td>
-            <form:select cssStyle="width: 33%" path="endDay"/>
+            <form:input cssStyle="width: 30%" path="departureMonth" />
         </td>
-
+        <td>
+            <form:input cssStyle="width: 30%" path="departureYear" />
+        </td>
+        <td>
+            <form:input cssStyle="width: 30%" path="endDay" />
+        </td>
+        <td>
+            <form:input cssStyle="width: 30%" path="endMonth" />
+        </td>
+        <td>
+            <form:input cssStyle="width: 30%" path="endYear" />
+        </td>
     </table>
     <p>Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố nào?</p>
     <form:textarea size="100%" path="travelHistory"/>

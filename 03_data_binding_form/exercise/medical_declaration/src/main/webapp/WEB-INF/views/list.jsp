@@ -32,7 +32,11 @@
       <th>Số hiệu phương tiện</th>
       <th>Số ghế</th>
       <th>Ngày khởi hành</th>
+      <th>Tháng khởi hành</th>
+      <th>Năm khởi hành</th>
       <th>Ngày Kết thúc</th>
+      <th>Tháng Kết thúc</th>
+      <th>Năm Kết thúc</th>
       <th>Lịch sử đi lại</th>
       <th></th>
     </tr>
@@ -46,8 +50,12 @@
         <td>${list.travelInformation}</td>
         <td>${list.license}</td>
         <td>${list.numberOfSeat}</td>
-        <td>${list.startDay}</td>
+        <td>${list.departureDay}</td>
+        <td>${list.departureMonth}</td>
+        <td>${list.departureYear}</td>
         <td>${list.endDay}</td>
+        <td>${list.endMonth}</td>
+        <td>${list.endYear}</td>
         <td>${list.travelHistory}</td>
       </tr>
     </c:forEach>

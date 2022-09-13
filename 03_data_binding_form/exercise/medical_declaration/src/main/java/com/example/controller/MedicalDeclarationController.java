@@ -27,6 +27,8 @@ public class MedicalDeclarationController {
     @GetMapping("/create")
     public String showCreate(Model model) {
         model.addAttribute("travelInformationList",medicalDeclarationService.travelInformation());
+        model.addAttribute("gender",medicalDeclarationService.gender());
+        model.addAttribute("country",medicalDeclarationService.country());
         model.addAttribute("medicalDeclaration", new MedicalDeclaration());
         return "create";
     }
@@ -36,7 +38,7 @@ public class MedicalDeclarationController {
         medicalDeclarationService.save(medicalDeclaration);
         redirectAttributes.addFlashAttribute("mess", "medicalDeclaration" + medicalDeclaration.getName()
                 + "Thêm mới thành công!");
-        return "redirect:/list";
+        return "redirect:/";
     }
 
 }

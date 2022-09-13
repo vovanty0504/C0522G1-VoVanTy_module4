@@ -8,7 +8,12 @@ public interface IMedicalDeclarationService {
 
     List<MedicalDeclaration> findAll();
 
-     void save(MedicalDeclaration medicalDeclaration);
+    void save(MedicalDeclaration medicalDeclaration);
 
     List<String> travelInformation();
+
+    List<String> country();
+
+    List<String> gender();
+
 }

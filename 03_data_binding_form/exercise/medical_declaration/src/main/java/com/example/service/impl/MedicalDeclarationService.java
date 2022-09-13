@@ -29,5 +29,17 @@ public class MedicalDeclarationService implements IMedicalDeclarationService {
         return medicalDeclarationRepository.travelInformation();
     }
 
+    @Override
+    public List<String> country() {
+        return medicalDeclarationRepository.country();
+    }
+
+    @Override
+    public List<String> gender() {
+        return medicalDeclarationRepository.gender();
+    }
+
+
+
 
 }

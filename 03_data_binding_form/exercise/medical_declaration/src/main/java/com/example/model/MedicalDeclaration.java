@@ -5,20 +5,25 @@ public class MedicalDeclaration {
     private String dayOfBirth;
     private String gender;
     private String country;
-    private long idCard;
+    private int idCard;
     private String travelInformation;
     private String license;
     private int numberOfSeat;
-    private String startDay;
-    private String endDay;
+    private int departureDay;
+    private int departureMonth;
+    private int departureYear;
+    private int endDay;
+    private int endMonth;
+    private int endYear;
     private String travelHistory;
 
     public MedicalDeclaration() {
     }
 
-    public MedicalDeclaration(String name, String dayOfBirth, String gender, String country, long idCard,
-                              String travelInformation, String license, int numberOfSeat, String startDay,
-                              String endDay, String travelHistory) {
+    public MedicalDeclaration(String name, String dayOfBirth, String gender, String country, int idCard,
+                              String travelInformation, String license, int numberOfSeat, int departureDay,
+                              int departureMonth, int departureYear, int endDay, int endMonth, int endYear,
+                              String travelHistory) {
         this.name = name;
         this.dayOfBirth = dayOfBirth;
         this.gender = gender;
@@ -27,8 +32,12 @@ public class MedicalDeclaration {
         this.travelInformation = travelInformation;
         this.license = license;
         this.numberOfSeat = numberOfSeat;
-        this.startDay = startDay;
+        this.departureDay = departureDay;
+        this.departureMonth = departureMonth;
+        this.departureYear = departureYear;
         this.endDay = endDay;
+        this.endMonth = endMonth;
+        this.endYear = endYear;
         this.travelHistory = travelHistory;
     }
 
@@ -64,11 +73,11 @@ public class MedicalDeclaration {
         this.country = country;
     }
 
-    public long getIdCard() {
+    public int getIdCard() {
         return idCard;
     }
 
-    public void setIdCard(long idCard) {
+    public void setIdCard(int idCard) {
         this.idCard = idCard;
     }
 
@@ -96,20 +105,52 @@ public class MedicalDeclaration {
         this.numberOfSeat = numberOfSeat;
     }
 
-    public String getStartDay() {
-        return startDay;
+    public int getDepartureDay() {
+        return departureDay;
     }
 
-    public void setStartDay(String startDay) {
-        this.startDay = startDay;
+    public void setDepartureDay(int departureDay) {
+        this.departureDay = departureDay;
     }
 
-    public String getEndDay() {
+    public int getDepartureMonth() {
+        return departureMonth;
+    }
+
+    public void setDepartureMonth(int departureMonth) {
+        this.departureMonth = departureMonth;
+    }
+
+    public int getDepartureYear() {
+        return departureYear;
+    }
+
+    public void setDepartureYear(int departureYear) {
+        this.departureYear = departureYear;
+    }
+
+    public int getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(String endDay) {
+    public void setEndDay(int endDay) {
         this.endDay = endDay;
+    }
+
+    public int getEndMonth() {
+        return endMonth;
+    }
+
+    public void setEndMonth(int endMonth) {
+        this.endMonth = endMonth;
+    }
+
+    public int getEndYear() {
+        return endYear;
+    }
+
+    public void setEndYear(int endYear) {
+        this.endYear = endYear;
     }
 
     public String getTravelHistory() {
