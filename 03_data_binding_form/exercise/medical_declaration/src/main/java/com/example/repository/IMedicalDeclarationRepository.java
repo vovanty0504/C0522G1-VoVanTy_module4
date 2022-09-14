@@ -16,6 +16,18 @@ public interface IMedicalDeclarationRepository {
 
     List<String> gender();
 
+    String[] departureDay();
 
+    String[] departureMonth();
+
+    String[] departureYear();
+
+    String[] endDay();
+
+    String[] endMonth();
+
+    String[] endYear();
+
+    String[] dayOfBirth();
 
 }

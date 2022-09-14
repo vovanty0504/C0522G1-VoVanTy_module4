@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <td>
-                <form:input cssStyle="width: 30%" path="dayOfBirth"/>
+                <form:select cssStyle="width: 30%" path="dayOfBirth" items="${dayOfBirth}"/>
             </td>
             <td>
                 <form:select cssStyle="width: 30%" path="gender" items="${gender}"/>
@@ -71,22 +71,22 @@
             <td colspan="1">Năm kết thúc</td>
         </tr>
         <td>
-            <form:input cssStyle="width: 30%" path="departureDay"/>
+            <form:select cssStyle="width: 30%" path="departureDay" items="${departureDay}"/>
         </td>
         <td>
-            <form:input cssStyle="width: 30%" path="departureMonth" />
+            <form:select cssStyle="width: 30%" path="departureMonth" items="${departureMonth}"/>
         </td>
         <td>
-            <form:input cssStyle="width: 30%" path="departureYear" />
+            <form:select cssStyle="width: 30%" path="departureYear" items="${departureYear}"/>
         </td>
         <td>
-            <form:input cssStyle="width: 30%" path="endDay" />
+            <form:select cssStyle="width: 30%" path="endDay" items="${endDay}"/>
         </td>
         <td>
-            <form:input cssStyle="width: 30%" path="endMonth" />
+            <form:select cssStyle="width: 30%" path="endMonth" items="${endMonth}" />
         </td>
         <td>
-            <form:input cssStyle="width: 30%" path="endYear" />
+            <form:select cssStyle="width: 30%" path="endYear" items="${endYear}" />
         </td>
     </table>
     <p>Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố nào?</p>

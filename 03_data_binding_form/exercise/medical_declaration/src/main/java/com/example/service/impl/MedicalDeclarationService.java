@@ -39,7 +39,40 @@ public class MedicalDeclarationService implements IMedicalDeclarationService {
         return medicalDeclarationRepository.gender();
     }
 
+    @Override
+    public String[] departureDay() {
+        return medicalDeclarationRepository.departureDay();
+    }
 
+    @Override
+    public String[] departureMonth() {
+        return medicalDeclarationRepository.departureMonth();
+    }
+
+    @Override
+    public String[] departureYear() {
+        return medicalDeclarationRepository.departureYear();
+    }
+
+    @Override
+    public String[] endDay() {
+        return medicalDeclarationRepository.endDay();
+    }
+
+    @Override
+    public String[] endMonth() {
+        return medicalDeclarationRepository.endMonth();
+    }
+
+    @Override
+    public String[] endYear() {
+        return medicalDeclarationRepository.endYear();
+    }
+
+    @Override
+    public String[] dayOfBirth() {
+        return medicalDeclarationRepository.dayOfBirth();
+    }
 
 
 }

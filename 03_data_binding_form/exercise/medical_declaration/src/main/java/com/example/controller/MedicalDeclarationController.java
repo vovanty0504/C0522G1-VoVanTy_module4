@@ -30,6 +30,13 @@ public class MedicalDeclarationController {
         model.addAttribute("gender",medicalDeclarationService.gender());
         model.addAttribute("country",medicalDeclarationService.country());
         model.addAttribute("medicalDeclaration", new MedicalDeclaration());
+        model.addAttribute("departureDay",medicalDeclarationService.departureDay());
+        model.addAttribute("departureMonth",medicalDeclarationService.departureMonth());
+        model.addAttribute("departureYear",medicalDeclarationService.departureYear());
+        model.addAttribute("endDay",medicalDeclarationService.endDay());
+        model.addAttribute("endMonth",medicalDeclarationService.endMonth());
+        model.addAttribute("endYear",medicalDeclarationService.endYear());
+        model.addAttribute("dayOfBirth",medicalDeclarationService.dayOfBirth());
         return "create";
     }
 
