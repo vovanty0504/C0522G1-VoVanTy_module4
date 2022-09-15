@@ -10,6 +10,8 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.repository.impl.ConnectionUtil.entityManager;
+
 @Repository
 public class ProductRepository implements IProductRepository {
 
@@ -120,15 +122,10 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public List<Product> findName(String name) {
-        List<Product> productSearch = new ArrayList<>();
-        List<Product> productList = findAll();
-
-        for (Product product : productList) {
-            if (product.getName().contains(name)) {
-                productSearch.add(product);
-            }
-        }
-        return productSearch;
+        String queryStr = "SELECT p FROM Product AS p WHERE p.name LIKE :name";
+        TypedQuery<Product> query = entityManager.createQuery(queryStr, Product.class);
+        query.setParameter("name", "%" + name + "%");
+        return query.getResultList();
     }
 
 }
