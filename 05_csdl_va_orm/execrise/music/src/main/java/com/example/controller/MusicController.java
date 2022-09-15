@@ -34,9 +34,10 @@ public class MusicController {
     }
 
     @PostMapping("/save")
-    public String save(Music music ) {
+    public String save(Music music ,RedirectAttributes redirectAttributes) {
         music.setId((int) (Math.random() * 1000));
         musicService.save(music);
+        redirectAttributes.addFlashAttribute("mess", "add new successful!");
         return "redirect:/";
     }
 
@@ -47,8 +48,9 @@ public class MusicController {
     }
 
     @PostMapping("/edit")
-    public String edit(Music music) {
+    public String edit(Music music,RedirectAttributes redirectAttributes) {
         musicService.update( music);
+        redirectAttributes.addFlashAttribute("mess","Update product successful!");
         return "redirect:/";
     }
 
