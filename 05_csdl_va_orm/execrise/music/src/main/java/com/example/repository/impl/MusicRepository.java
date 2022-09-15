@@ -6,8 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.repository.impl.ConnectionUtil.entityManager;
 
 @Repository
 public class MusicRepository implements IMusicRepository {
@@ -112,14 +115,9 @@ public class MusicRepository implements IMusicRepository {
 
     @Override
     public List<Music> findName(String name) {
-        List<Music> musicSearch = new ArrayList<>();
-        List<Music> musicList = findAll();
-
-        for (Music music : musicList) {
-            if (music.getNameMusic().contains(name)) {
-                musicSearch.add(music);
-            }
-        }
-        return musicSearch;
+        String queryStr = "SELECT m FROM Music AS m WHERE m.nameMusic LIKE :name";
+        TypedQuery<Music> query = entityManager.createQuery(queryStr, Music.class);
+        query.setParameter("name", "%" + name + "%");
+        return query.getResultList();
     }
 }
