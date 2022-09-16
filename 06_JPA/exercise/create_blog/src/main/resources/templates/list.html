@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+<body>
+<h3>Blog</h3>
+<p>
+    <a th:href="@{create}">ADD Blog</a>
+</p>
+<form th:action="@{search}" method="get" style="width: 30%">
+    <span>
+        <input type="text" name="name">
+        <button type="submit">Search</button>
+    </span>
+</form>
+
+<table id="products">
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Creator</th>
+        <th>Title</th>
+<!--        <th>Content</th>-->
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    <tr th:each="blog, status : ${blogList}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${blog.name}"></td>
+        <td th:text="${blog.creator}"></td>
+        <td th:text="${blog.title}"></td>
+<!--        <td th:text="${blog.content}"></td>-->
+        <td><a th:href="@{/{id}/edit(id=${blog.id})}">Edit</a></td>
+        <td><a th:href="@{/{id}/delete(id=${blog.id})}">Delete</a></td>
+        <td><a th:href="@{/{id}/view(id=${blog.id})}">Content</a></td>
+    </tr>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
