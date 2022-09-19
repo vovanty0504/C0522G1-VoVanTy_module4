@@ -8,22 +8,33 @@
 </p>
 <div id="form">
     <form th:action="@{save}" th:object="${blogList}" method="post">
-<!--        <input type="hidden" th:field="*{id}">-->
+        <!--        <input type="hidden" th:field="*{id}">-->
         <div>
             <label>Name</label>
             <input type="text" th:field="*{name}">
         </div>
         <div>
-            <label>creator</label>
+            <label>Creator</label>
             <input type="text" th:field="*{creator}">
         </div>
         <div>
-            <label>title</label>
+            <label>Title</label>
             <input type="text" th:field="*{title}">
         </div>
         <div>
-            <label>content</label>
+            <label>Content</label>
             <input type="text" th:field="*{content}">
+        </div>
+        <div>
+            <span>Category</span>
+            <select th:field="*{category}">
+                <option th:each="item : ${categoryList}" th:text="${item.categoryName}" th:value="${item.id}"></option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <label>Create Day</label>
+            <input type="text" th:field="*{createDay}">
         </div>
         <div>
             <input type="submit" value="save">

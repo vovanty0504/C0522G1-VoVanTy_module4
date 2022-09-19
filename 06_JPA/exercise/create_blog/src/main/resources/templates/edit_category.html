@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+
+<body>
+<h3>Edit Blog</h3>
+<p>
+    <a th:href="@{/category/list}"> Black to Category List</a>
+</p>
+<div id="form">
+    <form th:action="@{/category/edit}" th:object="${categoryList}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{categoryName}">
+        </div>
+        <div>
+            <input type="submit" value="save">
+        </div>
+    </form>
+</div>
+</body>
+</html>

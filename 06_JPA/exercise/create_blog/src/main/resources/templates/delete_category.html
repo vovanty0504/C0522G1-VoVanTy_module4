@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Delete Category</h3>
+<p>
+    <a th:href="@{/category/list}"> Black to Category List</a>
+</p>
+<div id="form">
+    <form th:action="@{/category/delete}" th:object="${categoryList}" method="post">
+        <input th:field="*{id}" readonly>
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{categoryName}" readonly>
+        </div>
+        <div>
+            <input type="submit" value="Delete">
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package com.codegym.repository;
 
 import com.codegym.model.Blog;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +13,5 @@ public interface IBlogRepository extends JpaRepository<Blog,Integer> {
 
     Blog findById(int id);
 
-    List<Blog> findByNameContains(String name);
+    Page<Blog> findByNameContains(String name, Pageable pageable);
 }

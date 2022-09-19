@@ -27,6 +27,16 @@
         <input type="text" th:field="*{content}">
     </div>
     <div>
+        <div>Category</div>
+        <select th:field="*{category}">
+            <option th:each="item : ${categoryList}" th:text="${item.categoryName}" th:value="${item.id}"></option>
+        </select>
+    </div>
+    <div>
+        <label>Create Day</label>
+        <input type="text" th:field="*{createDay}">
+    </div>
+    <div>
         <input type="submit" value="save">
     </div>
 </form>
