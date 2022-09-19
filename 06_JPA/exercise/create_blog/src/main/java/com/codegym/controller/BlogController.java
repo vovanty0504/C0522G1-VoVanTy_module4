@@ -85,7 +85,8 @@ public class BlogController {
     }
 
     @GetMapping("/")
-    public String search(@RequestParam(defaultValue = "") String name, Model model, @PageableDefault(value = 3)
+    public String search(@RequestParam(defaultValue = "") String name, Model model, @PageableDefault(value = 3,
+    sort = "createDay", direction = Sort.Direction.DESC)
             Pageable pageable) {
         model.addAttribute("blogList", blogService.findByNameContains(name, pageable));
         model.addAttribute("name",name);
