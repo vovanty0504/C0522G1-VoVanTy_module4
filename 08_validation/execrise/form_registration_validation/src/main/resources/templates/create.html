@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/layout :: head">-->
+<body>
+<h3>ADD New User</h3>
+<p>
+    <a th:href="@{/}"> Black to Product List</a>
+</p>
+<div id="form">
+    <form th:action="@{create}" th:object="${userDto}" method="post">
+        <!--        <input type="hidden" th:field="*{id}">-->
+        <table>
+            <tr>
+                <th>
+                    <label>first Name</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{firstName}">
+                    <p style="color: red" th:errors="*{firstName}" th:if="${#fields.hasErrors('firstName')}"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Last Name</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{lastName}">
+                    <p style="color: red" th:errors="*{lastName}" th:if="${#fields.hasErrors('lastName')}"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Phone Number</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{phoneNumber}">
+                    <p style="color: red" th:errors="*{phoneNumber}" th:if="${#fields.hasErrors('phoneNumber')}"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Age</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{age}">
+                    <p style="color: red" th:errors="*{age}" th:if="${#fields.hasErrors('age')}"></p>
+
+                </td>
+            </tr>
+            </tr>
+            <tr>
+                <th>
+                    <label>Email </label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{email}">
+                    <p style="color: red" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></p>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div>
+                        <input type="submit" value="save">
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+</body>
+</html>
