@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/layout :: head">-->
+<body>
+<h3>ADD New Product</h3>
+<p>
+    <a th:href="@{/}"> Black to Product List</a>
+</p>
+<div id="form">
+    <form th:action="@{save}" th:object="${blogList}" method="post">
+        <!--        <input type="hidden" th:field="*{id}">-->
+        <table>
+            <tr>
+                <th>
+                    <label>Name</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{name}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Creator</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{creator}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Title</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{title}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Content</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{content}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <span>Category</span>
+                </th>
+                <td>
+                    <select th:field="*{category}">
+                        <option th:each="item : ${categoryList}" th:text="${item.categoryName}"
+                                th:value="${item.id}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Create Day</label></th>
+                <td>
+                    <input type="text" th:field="*{createDay}">
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div>
+                        <input type="submit" value="save">
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+</body>
+</html>

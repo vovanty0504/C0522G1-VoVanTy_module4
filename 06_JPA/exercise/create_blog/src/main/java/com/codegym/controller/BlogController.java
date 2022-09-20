@@ -6,7 +6,6 @@ import com.codegym.model.Category;
 import com.codegym.service.IBlogService;
 import com.codegym.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -41,14 +40,14 @@ public class BlogController {
     public String showCreate(Model model) {
         model.addAttribute("categoryList", categoryService.finAll());
         model.addAttribute("blogList", new Blog());
-        return "create";
+        return "blog/create";
     }
 
     @PostMapping("/save")
     public String save(Blog blog, RedirectAttributes redirectAttributes) {
         blogService.save(blog);
         redirectAttributes.addFlashAttribute("mess", "successfully added new!");
-        return "redirect:/";
+        return "redirect:blog/";
     }
 
     @GetMapping("/{id}/edit")
@@ -56,7 +55,7 @@ public class BlogController {
         List<Category> categoryList = categoryService.finAll();
         model.addAttribute("blogList", blogService.findById(id));
         model.addAttribute("categoryList", categoryService.finAll());
-        return "edit";
+        return "blog/edit";
     }
 
     @PostMapping("/edit")
@@ -68,20 +67,20 @@ public class BlogController {
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable int id, Model model) {
         model.addAttribute("blogList", blogService.findById(id));
-        return "delete";
+        return "blog/delete";
     }
 
     @PostMapping("/delete")
     public String delete(Blog blog, RedirectAttributes redirectAttributes) {
         blogService.remove(blog);
         redirectAttributes.addFlashAttribute("mess", "Removed customer successfully!");
-        return "redirect:/";
+        return "redirect:blog/";
     }
 
     @GetMapping("/{id}/view")
     public String view(@PathVariable int id, Model model) {
         model.addAttribute("blogList", blogService.findById(id));
-        return "view";
+        return "blog/view";
     }
 
     @GetMapping("/")
@@ -90,6 +89,6 @@ public class BlogController {
             Pageable pageable) {
         model.addAttribute("blogList", blogService.findByNameContains(name, pageable));
         model.addAttribute("name",name);
-        return "list";
+        return "blog/list";
     }
 }

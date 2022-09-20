@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/layout :: head"></head>-->
+<body>
+<h1>Content </h1>
+<div>
+    <label><b>Name</b>  : </label>
+    <label th:text="${blogList.name}"></label>
+</div>
+<div>
+    <label><b>Creator</b> : </label>
+    <label th:text="${blogList.creator}"></label>
+</div>
+<div>
+    <label> <b>Title</b> : </label>
+    <label th:text="${blogList.title}"></label>
+</div>
+<br>
+<div>
+    <label>-</label>
+    <label th:text="${blogList.content}"></label>
+</div>
+
+<p>
+    <a th:href="@{/}"> Black to Blog List</a>
+</p>
+</body>
+</html>

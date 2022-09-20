@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/layout :: head"></head>-->
+
+<body>
+<h3>Edit Blog</h3>
+<p>
+    <a th:href="@{/}"> Black to Blog List</a>
+</p>
+<div id="form">
+    <form th:action="@{/edit}" th:object="${blogList}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <table>
+            <tr>
+                <th>
+                    <label>Name</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{name}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label> <label>creator</label></label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{creator}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>title</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{title}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>title</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{content}">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div>Category</div>
+                </th>
+                <td>
+                    <select th:field="*{category}">
+                        <option th:each="item : ${categoryList}" th:text="${item.categoryName}"
+                                th:value="${item.id}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label>Create Day</label>
+                </th>
+                <td>
+                    <input type="text" th:field="*{createDay}">
+                </td>
+            </tr>
+        </table>
+            <div>
+                <input type="submit" value="save">
+            </div>
+    </form>
+</div>
+</body>
+</html>

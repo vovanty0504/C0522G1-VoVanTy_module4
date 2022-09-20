@@ -1,7 +1,6 @@
 package com.codegym.controller;
 
 
-import com.codegym.model.Blog;
 import com.codegym.model.Category;
 import com.codegym.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +22,14 @@ public class CategoryController {
     @GetMapping("/list")
     public String showListCategory(Model model){
         model.addAttribute("categoryList",categoryService.finAll());
-        return "list_category";
+        return "category/list_category";
     }
 
     @GetMapping("/create")
     public String showCreate(Model model) {
         model.addAttribute("categoryList",categoryService.finAll());
         model.addAttribute("category", new Category());
-        return "create_category";
+        return "category/create_category";
     }
 
     @PostMapping("/save/category")
@@ -43,7 +42,7 @@ public class CategoryController {
     @GetMapping("/{id}/edit")
     public String showEdit(@PathVariable int id, Model model) {
         model.addAttribute("categoryList", categoryService.findById(id));
-        return "edit_category";
+        return "category/edit_category";
     }
 
     @PostMapping("/edit")
@@ -55,7 +54,7 @@ public class CategoryController {
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable int id , Model model){
         model.addAttribute("categoryList",categoryService.findById(id));
-        return "delete_category";
+        return "category/delete_category";
     }
 
     @PostMapping("/delete")
