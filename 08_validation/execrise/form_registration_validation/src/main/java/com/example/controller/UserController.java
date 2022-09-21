@@ -24,30 +24,30 @@ public class UserController {
     private IUserService iUserService;
 
     @GetMapping("/")
-    public String showList( Model model){
+    public String showList(Model model) {
         List<User> userList = iUserService.findAll();
-        model.addAttribute("userList",userList);
+        model.addAttribute("userList", userList);
         return "list";
     }
 
     @GetMapping("/create")
-    public String showCreate(Model model){
-        model.addAttribute("userDto",new UserDto());
+    public String showCreate(Model model) {
+        model.addAttribute("userDto", new UserDto());
         return "create";
     }
 
     @PostMapping("/create")
     public String createUser(@ModelAttribute @Validated UserDto userDto, BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes){
+                             RedirectAttributes redirectAttributes) {
 
-        new UserDto().validate(userDto,bindingResult);
-        if(bindingResult.hasFieldErrors()){
+        new UserDto().validate(userDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
             return "create";
-        }else {
-            User user= new User();
-            BeanUtils.copyProperties(userDto,user);
+        } else {
+            User user = new User();
+            BeanUtils.copyProperties(userDto, user);
             iUserService.save(user);
-            redirectAttributes.addFlashAttribute("mess",user.getEmail() +"thành công");
+            redirectAttributes.addFlashAttribute("mess", user.getFirstName() + "thành công");
             return "result";
         }
     }

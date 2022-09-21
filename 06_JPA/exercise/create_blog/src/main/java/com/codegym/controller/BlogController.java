@@ -28,13 +28,14 @@ public class BlogController {
     @Autowired
     private ICategoryService categoryService;
 
-//    @GetMapping("/")
-//    public String showList(@PageableDefault(value = 3, sort = "createDay", direction = Sort.Direction.DESC)
-//                                   Pageable pageable, Model model) {
-//        model.addAttribute("blogList", blogService.findAll(pageable));
-//        model.addAttribute("categoryList", categoryService.finAll());
-//        return "list";
-//    }
+
+    @GetMapping("/")
+    public String search(@PageableDefault(value = 3, sort = "create_day", direction = Sort.Direction.ASC)
+                                 Pageable pageable, @RequestParam(defaultValue = "") String name, Model model) {
+        model.addAttribute("blogList", blogService.findTitle(name, pageable));
+        model.addAttribute("name", name);
+        return "blog/index";
+    }
 
     @GetMapping("/create")
     public String showCreate(Model model) {
@@ -83,12 +84,5 @@ public class BlogController {
         return "blog/view";
     }
 
-    @GetMapping("/")
-    public String search(@RequestParam(defaultValue = "") String name, Model model, @PageableDefault(value = 3,
-    sort = "createDay", direction = Sort.Direction.DESC)
-            Pageable pageable) {
-        model.addAttribute("blogList", blogService.findByNameContains(name, pageable));
-        model.addAttribute("name",name);
-        return "blog/list";
-    }
+
 }

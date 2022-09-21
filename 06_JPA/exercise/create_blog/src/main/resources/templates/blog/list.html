@@ -1,49 +1,49 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="/layout :: head">-->
-<body>
-<h3>Blog</h3>
-<p>
-    <a th:href="@{create}">ADD Blog</a>
-</p>
-<form th:action="@{/}" method="get" style="width: 30%">
-    <span>
-        <input type="text" name="name">
-        <button type="submit">Search</button>
-    </span>
-</form>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--&lt;!&ndash;<head th:replace="/layout :: head">&ndash;&gt;-->
+<!--<body>-->
+<!--<h3>Blog</h3>-->
+<!--<p>-->
+<!--    <a th:href="@{create}">ADD Blog</a>-->
+<!--</p>-->
+<!--<form th:action="@{/}" method="get" style="width: 30%">-->
+<!--    <span>-->
+<!--        <input type="text" name="name">-->
+<!--        <button type="submit">Search</button>-->
+<!--    </span>-->
+<!--</form>-->
 
-<table border="1px">
-    <tr>
-        <th>Number</th>
-        <th>Name</th>
-        <th>Creator</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Create Day</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>View</th>
-    </tr>
-    <tr th:each="blog, status : ${blogList}">
-        <td th:text="${blogList.number * 3 + status.count}"></td>
-        <td th:text="${blog.name}"></td>
-        <td th:text="${blog.creator}"></td>
-        <td th:text="${blog.title}"></td>
-        <td th:if="${blog.category}" th:text="${blog.category.categoryName}"></td>
-        <td th:unless="${blog.category}">non</td>
-        <td th:text="${blog.createDay}"></td>
-        <td><a th:href="@{/{id}/edit(id=${blog.id})}">Edit</a></td>
-        <td><a th:href="@{/{id}/delete(id=${blog.id})}">Delete</a></td>
-        <td><a th:href="@{/{id}/view(id=${blog.id})}">Content</a></td>
-    </tr>
-</table>
-<div>
-    <a th:href="@{'/'(page = ${blogList.number -1 } ,name=${name})}" th:if="${blogList.hasPrevious()}">Previous</a>
-    <span th:text="${blogList.number+1}"></span>/
-    <span th:text="${blogList.totalPages}"></span>
-    <a th:href="@{'/'(page = ${blogList.number +1 }, name=${name})}" th:if="${blogList.hasNext()}">Next</a>
-</div>
-<!--<footer th:replace="/layout :: footer"></footer>-->
-</body>
-</html>
+<!--<table border="1px">-->
+<!--    <tr>-->
+<!--        <th>Number</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Creator</th>-->
+<!--        <th>Title</th>-->
+<!--        <th>Category</th>-->
+<!--        <th>Create Day</th>-->
+<!--        <th>Edit</th>-->
+<!--        <th>Delete</th>-->
+<!--        <th>View</th>-->
+<!--    </tr>-->
+<!--    <tr th:each="blog, status : ${blogList}">-->
+<!--        <td th:text="${blogList.number * 3 + status.count}"></td>-->
+<!--        <td th:text="${blog.name}"></td>-->
+<!--        <td th:text="${blog.creator}"></td>-->
+<!--        <td th:text="${blog.title}"></td>-->
+<!--        <td th:if="${blog.category}" th:text="${blog.category.categoryName}"></td>-->
+<!--        <td th:unless="${blog.category}">non</td>-->
+<!--        <td th:text="${blog.createDay}"></td>-->
+<!--        <td><a th:href="@{/{id}/edit(id=${blog.id})}">Edit</a></td>-->
+<!--        <td><a th:href="@{/{id}/delete(id=${blog.id})}">Delete</a></td>-->
+<!--        <td><a th:href="@{/{id}/view(id=${blog.id})}">Content</a></td>-->
+<!--    </tr>-->
+<!--</table>-->
+<!--<div>-->
+<!--    <a th:href="@{'/'(page = ${blogList.number -1 } ,name=${name})}" th:if="${blogList.hasPrevious()}">Previous</a>-->
+<!--    <span th:text="${blogList.number+1}"></span>/-->
+<!--    <span th:text="${blogList.totalPages}"></span>-->
+<!--    <a th:href="@{'/'(page = ${blogList.number +1 }, name=${name})}" th:if="${blogList.hasNext()}">Next</a>-->
+<!--</div>-->
+<!--&lt;!&ndash;<footer th:replace="/layout :: footer"></footer>&ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->
