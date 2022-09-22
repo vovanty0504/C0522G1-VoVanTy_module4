@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class LoginAspect {
     int count = 0;
 
-    @Pointcut("execution(* com.example.controller.BookController.showList(..))")
+    @Pointcut("within(com.example.controller.BookController*)")
     public void allMethodPointCut() {
     }
 
