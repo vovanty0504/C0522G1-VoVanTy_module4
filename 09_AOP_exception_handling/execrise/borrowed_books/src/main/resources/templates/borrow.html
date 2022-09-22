@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<form th:action="@{/save}" method="post" th:object="${bookBorrow}">
+    <table>
+        <input th:field="*{id}" type="hidden" readonly/>
+        <tr>
+            <td><label><b>Book</b> : </label></td>
+            <td><input th:field="*{book}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <label><b>Creator</b> : </label>
+            </td>
+            <td>
+                <input th:field="*{creator}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label> <b>Title</b> : </label>
+            </td>
+            <td>
+                <input th:field="*{title}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label> <b>Amount</b> : </label>
+            </td>
+            <td>
+                <input th:field="*{amount}"/>
+                <input th:field="*{startAmount}" type="hidden"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Mượn Sách</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

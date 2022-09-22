@@ -23,4 +23,9 @@ public class CustomerService implements ICustomerService {
     public Page<Customer> findByAndCustomerNameContains(String name, Pageable pageable) {
         return customerRepository.findByAndCustomerNameContains(name,pageable);
     }
+
+    @Override
+    public void save(Customer customer) {
+      customerRepository.save(customer);
+    }
 }

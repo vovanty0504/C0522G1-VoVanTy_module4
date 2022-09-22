@@ -24,5 +24,4 @@ public interface IBlogRepository extends JpaRepository<Blog, Integer> {
             countQuery = "select count(*) from (select b.title, c.category_name as categoryName , b.id from blog as b join category as c on b.category_id = c.id where title like %:titleSearch%) temp_table")
     Page<BlogDto> findTitle(@Param("titleSearch") String name, Pageable pageable);
 
-
 }

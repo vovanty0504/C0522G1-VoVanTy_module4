@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.module.Customer;
 import com.example.module.CustomerType;
 import com.example.repository.ICustomerRepository;
+import com.example.service.ICustomerService;
 import com.example.service.ICustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,8 @@ import java.util.List;
 public class CustomerController {
 
     @Autowired
-    private ICustomerRepository customerRepository;
+    private
+    ICustomerService customerService;
 
     @Autowired
     private ICustomerTypeService customerTypeService;
@@ -31,10 +33,17 @@ public class CustomerController {
     public String showList(@RequestParam(defaultValue = "") String search, @PageableDefault(value = 5) Pageable pageable,
                             Model model) {
         List<CustomerType> customerTypes = customerTypeService.findAll();
-        Page<Customer> customers = customerRepository.findAll(pageable);
+        Page<Customer> customers = customerService.findAll(pageable);
         model.addAttribute("search",search);
         model.addAttribute("customerTypes", customerTypes);
         model.addAttribute("customers", customers);
         return "customer/list";
+    }
+
+    @GetMapping("/save")
+    public String showFormCreate(Model model){
+        model.addAttribute("customerTy",customerTypeService.findAll());
+
+        return "customer/create";
     }
 }
