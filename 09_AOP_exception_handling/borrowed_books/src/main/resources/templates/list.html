@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1 style="text-align: center">Music List</h1>
+<h2 style="color: green">
+    Thư Viện Sách
+</h2>
+
+<table border="1px">
+    <tr>
+        <th>SST</th>
+        <th>Book</th>
+        <th>Amount</th>
+        <th>Mượn Sách</th>
+        <th>Trả Sách</th>
+
+    </tr>
+    <tr th:each="bookLibrary, status : ${bookList}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${bookLibrary.book}"></td>
+        <td th:text="${bookLibrary.amount}"></td>
+        <td><a th:href="@{/borrow/{id}(id=${bookLibrary.id})}">Mượn Sách </a></td>
+        <td><a th:href="@{/pay/{id}(id=${bookLibrary.id})}">Trả Sách </a></td>
+    </tr>
+</table>
+</body>
+</html>

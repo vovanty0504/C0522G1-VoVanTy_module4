@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Component
 @Aspect
-public class LoginAspect {
+public class LibraryAspect {
     int count = 0;
 
     @Pointcut("within(com.example.controller.BookController*)")
@@ -19,7 +19,7 @@ public class LoginAspect {
     @After("allMethodPointCut()")
     public void beforeCallMethod(JoinPoint joinPoint) {
         count++;
-        System.err.println("start method name" + joinPoint.getSignature().getName() + " số lần ghé thăm thư viện " + count);
+        System.err.println("method name " + joinPoint.getSignature().getName() + " số lần ghé thăm thư viện " + count);
     }
 
     @Pointcut("execution(* com.example.controller.BookController.get*(..))")
@@ -28,6 +28,6 @@ public class LoginAspect {
 
     @After("afterAllMethodPointCut()")
     public void afterCallMethod(JoinPoint joinPoint) {
-        System.err.println("start method name" + joinPoint.getSignature().getName() + " Time " + LocalDateTime.now());
+        System.err.println("method name " + joinPoint.getSignature().getName() + " Time " + LocalDateTime.now());
     }
 }
