@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/layout :: head">-->
 <body>
-aaaaaaaa
+<h3>ADD New Product</h3>
+<p>
+    <a th:href="@{/}"> Black to Product List</a>
+</p>
+<div id="form">
+    <form th:action="@{save}" th:object="${customerList}" method="post">
+        <!--        <input type="hidden" th:field="*{id}">-->
+
+       <div  class="form-group">
+                    <label for="fullName">Name</label> <br>
+                    <input type="text"  id="fullName" name="fullName" th:field="*{customerName}">
+       </div>
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    <label>Ngày Sinh</label>-->
+<!--                </th>-->
+<!--                <td>-->
+<!--                    <input type="text" th:field="*{customerDateOfBirth}">-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    <label>Giới Tính</label>-->
+<!--                </th>-->
+<!--                <td>-->
+<!--                    <input type="text" th:field="*{customerGender}">-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    <label>ID Card</label>-->
+<!--                </th>-->
+<!--                <td>-->
+<!--                    <input type="text" th:field="*{customerIdCard}">-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    <label>Số Điện Thoại</label>-->
+<!--                </th>-->
+<!--                <td>-->
+<!--                    <input type="text" th:field="*{customerPhoneNumber}">-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    <label>Email</label>-->
+<!--                </th>-->
+<!--                <td>-->
+<!--                    <input type="text" th:field="*{customerEmail}">-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    <span>Loại Khách Hàng</span>-->
+<!--                </th>-->
+<!--                <td>-->
+<!--                    <select th:field="*{customerType}">-->
+<!--                        <option th:each="item : ${customerType}" th:text="${item.customerTypeName}"-->
+<!--                                th:value="${item.customerTypeId}"></option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td></td>-->
+<!--                <td>-->
+<!--                    <div>-->
+<!--                        <input type="submit" value="save">-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+    </form>
+</div>
 </body>
 </html>

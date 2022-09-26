@@ -24,6 +24,7 @@
                 <th>Hình Ảnh</th>
                 <th>Giá</th>
                 <th>Số Lượng</th>
+                <th>Tăng Số Lượng</th>
                 <th>Delete</th>
                 <th>Tổng Tiền</th>
 
@@ -36,6 +37,10 @@
                 </td>
                 <td th:text="${productMap.key.price}">150000</td>
                 <td th:text="${productMap.value}">10</td>
+                <td>
+                    <a class="btn btn-success" role="button" th:href="@{/save/{id}(id=${productMap.key.id})}"
+                       style="color: red;background-color: green">+</a>
+                </td>
                 <td>
                     <a th:href="@{/delete/__${productMap.key.id}__}">
                         <button class="btn btn-danger">Delete</button>

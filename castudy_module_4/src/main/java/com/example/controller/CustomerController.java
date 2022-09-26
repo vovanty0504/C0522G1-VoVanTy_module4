@@ -12,8 +12,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,19 +33,26 @@ public class CustomerController {
 
     @GetMapping("/list")
     public String showList(@RequestParam(defaultValue = "") String search, @PageableDefault(value = 5) Pageable pageable,
-                            Model model) {
+                           Model model) {
         List<CustomerType> customerTypes = customerTypeService.findAll();
         Page<Customer> customers = customerService.findAll(pageable);
-        model.addAttribute("search",search);
+        model.addAttribute("search", search);
         model.addAttribute("customerTypes", customerTypes);
         model.addAttribute("customers", customers);
         return "customer/list";
     }
 
     @GetMapping("/save")
-    public String showFormCreate(Model model){
-        model.addAttribute("customerTy",customerTypeService.findAll());
-
+    public String showFormCreate(Model model) {
+        model.addAttribute("customerType", customerTypeService.findAll());
+        model.addAttribute("customerList", new Customer());
         return "customer/create";
+    }
+
+    @PostMapping("/save")
+    public String save(Customer customer , RedirectAttributes redirectAttributes){
+        customerService.save(customer);
+        redirectAttributes.addFlashAttribute("mess","thêm mới thành công!");
+        return "redirect:/customer/list";
     }
 }
