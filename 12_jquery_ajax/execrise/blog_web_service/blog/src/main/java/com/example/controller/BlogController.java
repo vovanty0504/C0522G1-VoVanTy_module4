@@ -18,10 +18,9 @@ public class BlogController {
     @Autowired
     private IBlogService blogService;
 
-
     @GetMapping
-    public ResponseEntity<List<Blog>> showList() {
-        List<Blog> blogList = blogService.findAll();
+    public ResponseEntity<List<Blog>> showList(@RequestParam(value = "search", defaultValue = "") String searchName) {
+        List<Blog> blogList = blogService.findByName(searchName);
         if (blogList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -46,11 +45,4 @@ public class BlogController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Blog>> searchBlog(@RequestParam String name) {
-        List<Blog> blogList = blogService.findByName(name);
-        if(blogList.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 }

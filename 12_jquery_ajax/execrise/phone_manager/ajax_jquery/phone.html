@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<h1>Danh Sách Smart Phone</h1>
+
+<form id="add-smartphone">
+    <table>
+        <tr>
+            <td>Producer:</td>
+            <td><input type="text" id="producer" placeholder="producer"></td>
+        </tr>
+        <tr>
+            <td>Model:</td>
+            <td><input type="text" id="model" placeholder="model"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" id="price" placeholder="price"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>
+        </tr>
+    </table>
+</form>
+<br>
+
+<table border="1px" id="tableList">
+    <thead>
+    <tr>
+        <th>SST</th>
+        <th>producer</th>
+        <th>model</th>
+        <th>price</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody id="tbodyList">
+    <tr>
+        <td>load ding...</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<table>
+
+    <tr>
+        <td>Producer:</td>
+       <td><input type="text" id="producerEdit" placeholder="producer" value=""></td>
+        <!--        <td><input type="hidden" id="id" value=""></td>-->
+    </tr>
+
+    <tr>
+        <td>Model:</td>
+        <td><input type="text" id="modelEdit" placeholder="model" value=""></td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td><input type="text" id="priceEdit" placeholder="price" value=""></td>
+    </tr>
+    <tr>
+        <td><button onclick="editSmartPhone()">Edit</button></td>
+
+    </tr>
+</table>
+
+
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $("#tbodyList").empty();
+        $.ajax({
+            url: "http://localhost:8080/smartphone",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                let tr = [];
+                for (let i = 0; i < data.length; i++) {
+                    tr.push("<tr>")
+                    tr.push("<td>" + (i + 1) + "</td>");
+                    tr.push("<td>" + data[i].producer + "</td>");
+                    tr.push("<td>" + data[i].model + "</td>");
+                    tr.push("<td>" + data[i].price + "</td>");
+                    tr.push("<td>");
+                    tr.push(`<td><button data-bs-toggle="editModal" data-bs-target="#exampleModal" onclick="findById(` + data[i].id + `)">Edit</button></td>`)
+                    tr.push("</td>");
+                    tr.push("</tr>")
+                }
+                $("#tableList").append(tr.join(""))
+            }
+        })
+    })
+
+    function addNewSmartPhone() {
+        //lay du lieu
+        let producer = $('#producer').val();
+        let model = $('#model').val();
+        let price = $('#price').val();
+        let newSmartphone = {
+            producer: producer,
+            model: model,
+            price: price
+        };
+        // goi ajax
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify({'producer': producer, 'model': model, 'price': price}),
+            //tên API
+            url: "http://localhost:8080/smartphone",
+            //xử lý khi thành công
+            success:
+                function () {
+                    alert("thêm mới thành công");
+                }
+
+        });
+        //chặn sự kiện mặc định của thẻ
+        event.preventDefault();
+    }
+
+    function findById(id) {
+        $.ajax({
+            url: "http://localhost:8080/smartphone/" + id,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                document.getElementById("id").value = (data.id);
+                document.getElementById("producerEdit").value = (data.producer);
+                document.getElementById("modelEdit").value = (data.model);
+                document.getElementById("priceEdit").value = (data.price);
+            }
+        })
+    }
+    function editSmartPhone() {
+        //lay du lieu
+        let id = $("#id").val();
+        let producer = $('#producerEdit').val();
+        let model = $('#modelEdit').val();
+        let price = $('#priceEdit').val();
+        let newSmartphone = {
+            id: id,
+            producer: producer,
+            model: model,
+            price: price
+        }
+
+        $(".table tbody").empty();
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "PUT",
+            data: JSON.stringify(newSmartphone),
+            //tên API
+            url: "http://localhost:8080/smartphone/" + id,
+            success: function () {
+                $.ajax({
+                    url: "http://localhost:8080/smartphone/",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        let str = [];
+                        for (let i = 0; i < data.length; i++) {
+                            str.push("<tr>")
+                            str.push("<td>" + data[i].id + "</td>")
+                            str.push("<td>" + data[i].model + "</td>")
+                            str.push("<td>" + data[i].price + "</td>")
+                            str.push("<td>" + data[i].producer + "</td>")
+                            str.push(`<td><button data-bs-toggle="editModal" data-bs-target="#exampleModal" onclick="findById(` + data[i].id + `)">Edit</button></td>`)
+                            str.push("</tr>")
+                        }
+                        $("table").append((str.join("")));
+                    }
+                })
+            }
+
+        })
+    }
+
+</script>
+</body>
+</html>
