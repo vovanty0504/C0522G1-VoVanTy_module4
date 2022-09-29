@@ -25,7 +25,7 @@
                 <th>Giá</th>
                 <th>Số Lượng</th>
                 <th>Tăng Số Lượng</th>
-                <th>Delete</th>
+                <th>Giảm Số Lượng</th>
                 <th>Tổng Tiền</th>
 
             </tr>
@@ -42,9 +42,8 @@
                        style="color: red;background-color: green">+</a>
                 </td>
                 <td>
-                    <a th:href="@{/delete/__${productMap.key.id}__}">
-                        <button class="btn btn-danger">Delete</button>
-                    </a>
+                    <a class="btn btn-success" role="button" th:href="@{/delete/{id}(id=${productMap.key.id})}"
+                       style="color: red;background-color: green">-</a>
                 </td>
             </tr>
             <tr>

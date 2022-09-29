@@ -30,9 +30,19 @@ public class CartDto {
         }
     }
 
-    public void delete(ProductDto productDto) {
-        productMap.remove(productDto);
+    public void decreaseProduct(ProductDto productDto) {
+        if (productMap.containsKey(productDto)) {
+            Integer currentValue = productMap.get(productDto);
+
+            if (currentValue > 1) {
+                productMap.replace(productDto, currentValue - 1);
+            } else {
+                productMap.remove(productDto);
+            }
+        }
     }
+
+    
 
     public Double totalPayment() {
         double money = 0;

@@ -63,7 +63,7 @@ public class ProductController {
         Optional<Product> productOptional = productService.findById(id);
         ProductDto productDto = new ProductDto();
         BeanUtils.copyProperties(productOptional.get(), productDto);
-        cartDto.delete(productDto);
+        cartDto.decreaseProduct(productDto);
         return "redirect:/cart";
     }
 
