@@ -9,8 +9,8 @@
 <body>
 <h1>Blog List</h1>
 
-    <input type="text" name="search" id="search" placeholder="Nhập tên tìm kiếm">
-    <button type="submit" id="find">Tìm kiếm</button>
+<input type="text" name="search" id="search" placeholder="Nhập tên tìm kiếm">
+<button type="submit" id="find">Tìm kiếm</button>
 
 <br>
 
@@ -24,7 +24,7 @@
         <th>Create Day</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="bodyBlog">
     <tr>
         <td>
             <span>Load ding...</span>
@@ -38,83 +38,39 @@
 <script src="jquery/jquery-3.5.1.min.js"></script>
 <script>
 
-    $(Document).ready(function () {
-        $("tbody").empty();
+    let page = 0;
+    let add = 3;
+    let size = 3;
+    function pageBlog(pageNumber) {
+        let search =  $("#search").val();
         $.ajax({
-            url: "http://localhost:8080/api/blog",
             type: "GET",
-            dataType: "json",
+            url: "http://localhost:8080/api/blog/list?page=" + pageNumber +"&size="+ size +"&search="+search,
             success: function (data) {
-                console.log(data)
-                let array = [];
-                let a;
-                if (data.length <= 3) {
-                    a = data.length;
-                } else {
-                    a = 2;
+                let blogList = data.content;
+                let str = '';
+                for (let i= 0 ; i< blogList.length; i ++){
+                    str += `<tr>
+                        <td>${i + 1}</td>
+                        <td>${blogList[i].creator}</td>
+                        <td>${blogList[i].title}</td>
+                        <td>${blogList[i].name}</td>
+                        <td>${blogList[i].createDay}</td>
+                    </tr>`;
                 }
-                for (let i = 0; i < a; i++) {
-                    array.push("<tr>")
-                    array.push("<td>" + (i + 1) + "</td>")
-                    array.push("<td>" + data[i].name + "</td>")
-                    array.push("<td>" + data[i].creator + "</td>")
-                    array.push("<td>" + data[i].title + "</td>")
-                    array.push("<td>" + data[i].createDay + "</td>")
-                    array.push("</tr>")
-                }
-                $("table").append(array.join(""))
+                $("#bodyBlog").html(str);
             }
-        })
-    })
-
+        });
+    }
     $("#downloadMore").click(function () {
-        $("tbody").empty();
-        $.ajax({
-            url: "http://localhost:8080/api/blog",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                console.log(data)
-                let array = [];
-
-                for (let i = 0; i < data.length; i++) {
-                    array.push("<tr>")
-                    array.push("<td>" + (i + 1) + "</td>")
-                    array.push("<td>" + data[i].name + "</td>")
-                    array.push("<td>" + data[i].creator + "</td>")
-                    array.push("<td>" + data[i].title + "</td>")
-                    array.push("<td>" + data[i].createDay + "</td>")
-                    array.push("</tr>")
-                }
-                $("table").append(array.join(""))
-            }
-        })
-    })
+        size+=add;
+        pageBlog(page,size)
+    });
 
     $("#find").click(function () {
-        let value = $("#search").val();
-        $("table").empty();
-        $.ajax({
-            url: "http://localhost:8080/api/blog/?search=" + value,
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                console.log(data)
-                let array = [];
-
-                for (let i = 0; i < data.length; i++) {
-                    array.push("<tr>")
-                    array.push("<td>" + (i + 1) + "</td>")
-                    array.push("<td>" + data[i].name + "</td>")
-                    array.push("<td>" + data[i].creator + "</td>")
-                    array.push("<td>" + data[i].title + "</td>")
-                    array.push("<td>" + data[i].createDay + "</td>")
-                    array.push("</tr>")
-                }
-                $("table").append(array.join(""))
-            }
-        })
+        pageBlog(page)
     })
+    pageBlog(page);
 
 </script>
 
