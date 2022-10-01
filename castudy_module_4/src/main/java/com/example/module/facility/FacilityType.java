@@ -7,7 +7,7 @@ import java.util.Set;
 public class FacilityType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int facilityTypeId;
+    private Integer facilityTypeId;
     private String facilityTypeName;
 
     @OneToMany(mappedBy = "facilityType")
@@ -16,17 +16,17 @@ public class FacilityType {
     public FacilityType() {
     }
 
-    public FacilityType(int facilityTypeId, String facilityTypeName, Set<Facility> facilities) {
+    public FacilityType(Integer facilityTypeId, String facilityTypeName, Set<Facility> facilities) {
         this.facilityTypeId = facilityTypeId;
         this.facilityTypeName = facilityTypeName;
         this.facilities = facilities;
     }
 
-    public int getFacilityTypeId() {
+    public Integer getFacilityTypeId() {
         return facilityTypeId;
     }
 
-    public void setFacilityTypeId(int facilityTypeId) {
+    public void setFacilityTypeId(Integer facilityTypeId) {
         this.facilityTypeId = facilityTypeId;
     }
 

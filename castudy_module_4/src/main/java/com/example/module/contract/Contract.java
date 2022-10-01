@@ -16,6 +16,7 @@ public class Contract {
     private String contractEndDate;
     private String contractDeposit;
     private String totalMoney;
+    private boolean isDelete;
 
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")

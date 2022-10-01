@@ -61,51 +61,49 @@
         <tr>
             <th>STT</th>
             <th>Name</th>
-            <th>DateOfBirth</th>
-            <th>Gender</th>
-            <th>Id Card</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Customer Type</th>
+            <th>Area</th>
+            <th>Cost</th>
+            <th>Max People</th>
+            <th>Pool Area</th>
+            <th>Facility Free</th>
+            <th>Rent Type</th>
             <th>Edit</th>
             <th>Delete</th>
             <th>View</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="customer, status : ${customerList}">
-            <td th:text="${customerList.number * 2 + status.count}"></td>
-            <td th:text="${customer.customerName}"></td>
-            <td th:text="${customer.customerDateOfBirth}"></td>
-            <td th:if="${customer.customerGender==0}" th:text="Nam"></td>
-            <td th:if="${customer.customerGender==1}" th:text="Nữ"></td>
-            <td th:if="${customer.customerGender==2}" th:text="LGBT"></td>
-            <td th:text="${customer.customerIdCard}"></td>
-            <td th:text="${customer.customerPhoneNumber}"></td>
-            <td th:text="${customer.customerEmail}"></td>
-            <td th:text="${customer.customerAddress}"></td>
-            <td th:if="${customer.customerId}" th:text="${customer.customerType.customerTypeName}"></td>
-            <td th:unless="${customer.customerType}"></td>
+        <tr th:each="facility, status : ${facilityList}">
+            <td th:text="${facilityList.number * 2 + status.count}"></td>
+            <td th:text="${facility.facilityName}"></td>
+            <td th:text="${facility.facilityArea}"></td>
+            <td th:text="${facility.facilityCost}"></td>
+            <td th:text="${facility.facilityMaxPeople}"></td>
+            <td th:text="${facility.facilityPoolArea}"></td>
+            <td th:if="${facility.facilityId}" th:text="${facility.facilityType.facilityTypeName}"></td>
+            <td th:unless="${facility.facilityType}"></td>
+            <td th:if="${facility.facilityId}" th:text="${facility.rentType.rentTypeName}"></td>
+            <td th:unless="${facility.rentType}"></td>
             <td class="text-center">
-                <a th:href="@{/customer/edit/__${customer.customerId}__}">
+                <a th:href="@{/facility/edit/__${facility.facilityId}__}">
                     <button class="btn btn-success btn-outline-secondary btn-sm">
                         <span class="fa-solid fa-user-pen text-light h6 m-auto px-2"></span>
                     </button>
                 </a>
             </td>
             <td class="text-center">
-                <button th:attr="onclick=|deleteCustomer('${customer.customerId}', '${customer.customerName}')|"
+                <button th:attr="onclick=|deleteFacility('${facility.facilityId}', '${facility.facilityName}')|"
                         class="btn btn-danger btn-outline-secondary btn-sm" data-bs-toggle="modal"
                         data-bs-target="#deleteCustomer">
                     <span class="fa-solid fa-person-circle-minus text-light h6 m-auto px-2"></span>
                 </button>
             </td>
             <td class="text-center">
-                <button th:attr="onclick=|viewCustomer('${customer.customerName}', '${customer.customerDateOfBirth}',
-                '${customer.customerGender}', '${customer.customerIdCard}', '${customer.customerPhoneNumber}',
-                '${customer.customerEmail}', '${customer.customerAddress}',
-                '${customer.customerType.customerTypeName}')|"
+                <button th:attr="onclick=|viewFacility('${facility.facilityName}', '${facility.facilityArea}',
+                '${facility.facilityCost}', '${facility.facilityMaxPeople}', '${facility.facilityStandardRoom}',
+                '${facility.facilityDescriptionOtherConvenience}', '${facility.facilityPoolArea}',
+                '${facility.facilityNumberOfFloors}','${facility.facilityFree}',
+                '${facility.facilityType.facilityTypeName}','${facility.rentType.rentTypeName}')|"
                         class="btn btn-warning btn-outline-secondary btn-sm" data-bs-toggle="modal"
                         data-bs-target="#viewCustomer">
                     <span class="fa-solid fa-user text-light h6 m-auto px-2"></span>
@@ -124,9 +122,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form th:action="@{/customer/delete}">
+                <form th:action="@{/facility/delete}">
                     <div class="modal-body">
-                        <span class="h6">Khách hàng:</span><strong id="nameDelete" class="text-danger ps-2"></strong>
+                        <span class="h6">Dịch Vụ:</span><strong id="nameDelete" class="text-danger ps-2"></strong>
                         <input type="hidden" name="idDelete" id="idDelete" readonly/>
                     </div>
 
@@ -152,43 +150,58 @@
             <div class="modal-body">
                 <table>
                     <tr>
-                        <td class="h6 pe-3">Tên khách hàng:</td>
+                        <td class="h6 pe-3">Tên dịch vụ:</td>
                         <td id="name" class="text-primary h6"></td>
                     </tr>
 
                     <tr>
-                        <td class="h6 pe-3">Ngày sinh:</td>
-                        <td id="birthday" class="text-primary"></td>
+                        <td class="h6 pe-3">Loại dịch vụ:</td>
+                        <td id="facilityType" class="text-primary h6"></td>
                     </tr>
 
                     <tr>
-                        <td class="h6 pe-3">Giới tính:</td>
-                        <td id="gender" class="text-primary"></td>
+                        <td class="h6 pe-3">Diện tích:</td>
+                        <td id="area" class="text-primary"></td>
                     </tr>
 
                     <tr>
-                        <td class="h6 pe-3">Số CMND/CCCD:</td>
-                        <td id="idCard" class="text-primary"></td>
+                        <td class="h6 pe-3">Chi phí thuê:</td>
+                        <td id="cost" class="text-primary"></td>
                     </tr>
 
                     <tr>
-                        <td class="h6 pe-3">Số điện thoại:</td>
-                        <td id="phone" class="text-primary"></td>
+                        <td class="h6 pe-3">Số người tối đa:</td>
+                        <td id="maxPeople" class="text-primary"></td>
                     </tr>
 
                     <tr>
-                        <td class="h6 pe-3">Email:</td>
-                        <td id="email" class="text-primary"></td>
+                        <td class="h6 pe-3">Tiêu chuẩn phòng:</td>
+                        <td id="standardRoom" class="text-primary"></td>
                     </tr>
 
                     <tr>
-                        <td class="h6 pe-3">Địa chỉ:</td>
-                        <td id="address" class="text-primary"></td>
+                        <td class="h6 pe-3">Mô tả tiện nghi khác:</td>
+                        <td id="description" class="text-primary"></td>
                     </tr>
 
                     <tr>
-                        <td class="h6 pe-3">Loại khách:</td>
-                        <td id="type" class="text-primary"></td>
+                        <td class="h6 pe-3">Diện tích hồ bơi:</td>
+                        <td id="poolArea" class="text-primary"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="h6 pe-3">Số tầng:</td>
+                        <td id="numberOfFloors" class="text-primary"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="h6 pe-3">Dịch vụ miễn phí đi kèm:</td>
+                        <td id="facilityFree" class="text-primary"></td>
+                    </tr>
+
+                    <tr>
+                        <td class="h6 pe-3">Kiểu thuê:</td>
+                        <td id="rentType" class="text-primary"></td>
                     </tr>
                 </table>
             </div>
@@ -199,14 +212,14 @@
         </div>
     </div>
 </div>
-<div>
-    <a th:href="@{'/customer/list'(page=${customerList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},
-    phoneSearch=${phoneSearch})}" th:if="${customerList.hasPrevious()}">Previous</a>
-    <span th:text="${customerList.number + 1}"></span>/
-    <span th:text="${customerList.totalPages }"></span>
-    <a th:href="@{'/customer/list'(page=${customerList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
-    phoneSearch=${phoneSearch})}" th:if="${customerList.hasNext()}">Next</a>
-</div>
+<!--<div>-->
+<!--    <a th:href="@{'/customer/list'(page=${customerList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},-->
+<!--    phoneSearch=${phoneSearch})}" th:if="${customerList.hasPrevious()}">Previous</a>-->
+<!--    <span th:text="${customerList.number + 1}"></span>/-->
+<!--    <span th:text="${customerList.totalPages }"></span>-->
+<!--    <a th:href="@{'/customer/list'(page=${customerList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},-->
+<!--    phoneSearch=${phoneSearch})}" th:if="${customerList.hasNext()}">Next</a>-->
+<!--</div>-->
 <!--<a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Back to HOME</a>-->
 <!--</div>-->
 <script>
@@ -217,28 +230,51 @@
 <script src="datatables/js/jquery.dataTables.min.js"></script>
 <script src="datatables/js/dataTables.bootstrap4.min.js"></script>
 <script>
-    function deleteCustomer(id, name) {
+    function deleteFacility(id, name) {
         document.getElementById("idDelete").value = id;
         document.getElementById("nameDelete").innerText = name;
-        debugger
+
     }
 
-    function viewCustomer(name, birthday, gender, idCard, phone, email, address, type) {
+    function viewFacility(name, area, cost, maxPeople, standardRoom, description, poolArea, numberOfFloors,
+                          facilityFree, rentType, facilityType) {
         document.getElementById("name").innerText = name;
-        document.getElementById("birthday").innerText = birthday;
-        if (gender == 0) {
-            document.getElementById("gender").innerText = "Nam";
-        } else if (gender == 1) {
-            document.getElementById("gender").innerText = "Nữ";
+        document.getElementById("area").innerHTML = area + " (m<sup>2</sup>)";
+        document.getElementById("cost").innerText = "₫ " + cost;
+        document.getElementById("maxPeople").innerText = maxPeople;
+
+        if (standardRoom === "") {
+            document.getElementById("standardRoom").innerText = "-";
         } else {
-            document.getElementById("gender").innerText = "LGBT";
+            document.getElementById("standardRoom").innerText = standardRoom;
         }
-        document.getElementById("idCard").innerText = idCard;
-        document.getElementById("phone").innerText = phone;
-        document.getElementById("email").innerText = email;
-        document.getElementById("address").innerText = address;
-        document.getElementById("type").innerText = type;
-        debugger
+
+        if (description === "") {
+            document.getElementById("description").innerText = "-";
+        } else {
+            document.getElementById("description").innerText = description;
+        }
+
+        if (poolArea === "") {
+            document.getElementById("poolArea").innerHTML = "-";
+        } else {
+            document.getElementById("poolArea").innerHTML = poolArea + " (m<sup>2</sup>)";
+        }
+
+        if (numberOfFloors === "") {
+            document.getElementById("numberOfFloors").innerText = "-";
+        } else {
+            document.getElementById("numberOfFloors").innerText = numberOfFloors;
+        }
+
+        if (facilityFree === "") {
+            document.getElementById("facilityFree").innerText = "-";
+        } else {
+            document.getElementById("facilityFree").innerText = facilityFree;
+        }
+
+        document.getElementById("rentType").innerText = rentType;
+        document.getElementById("facilityType").innerText = facilityType;
     }
 </script>
 

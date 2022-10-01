@@ -8,14 +8,39 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class FacilityService implements IFacilityService {
 
     @Autowired
     private IFacilityRepository facilityRepository;
 
+
     @Override
-    public Page<Facility> findAll(Pageable pageable) {
-        return facilityRepository.findAll(pageable);
+    public Page<Facility> searchFacility(String nameSearch, Pageable pageable) {
+        return facilityRepository.searchFacility(nameSearch,pageable);
     }
+
+    @Override
+    public void save(Facility facility) {
+        facilityRepository.save(facility);
+    }
+
+    @Override
+    public Optional<Facility> findById(Integer id) {
+        return facilityRepository.findById(id);
+    }
+
+    @Override
+    public void deleteLogical(Integer id) {
+       facilityRepository.deleteLogical(id);
+    }
+
+    @Override
+    public void update(Facility facility) {
+      facilityRepository.save(facility);
+    }
+
+
 }

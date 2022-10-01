@@ -1,4 +1,4 @@
-package com.example.dto.customer;
+package com.example.dto;
 
 import com.example.module.customer.CustomerType;
 
@@ -6,7 +6,7 @@ public class CustomerDto {
     private int customerId;
     private String customerName;
     private String customerDateOfBirth;
-    private String customerGender;
+    private int customerGender;
     private String customerIdCard;
     private String customerPhoneNumber;
     private String customerEmail;
@@ -16,7 +16,7 @@ public class CustomerDto {
     public CustomerDto() {
     }
 
-    public CustomerDto(int customerId, String customerName, String customerDateOfBirth, String customerGender,
+    public CustomerDto(int customerId, String customerName, String customerDateOfBirth, int customerGender,
                        String customerIdCard, String customerPhoneNumber, String customerEmail, String customerAddress,
                        CustomerType customerType) {
         this.customerId = customerId;
@@ -54,11 +54,11 @@ public class CustomerDto {
         this.customerDateOfBirth = customerDateOfBirth;
     }
 
-    public String getCustomerGender() {
+    public int getCustomerGender() {
         return customerGender;
     }
 
-    public void setCustomerGender(String customerGender) {
+    public void setCustomerGender(int customerGender) {
         this.customerGender = customerGender;
     }
 

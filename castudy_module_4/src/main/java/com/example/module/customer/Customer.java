@@ -12,11 +12,12 @@ public class Customer {
     private int customerId;
     private String customerName;
     private String customerDateOfBirth;
-    private String customerGender;
+    private int customerGender;
     private String customerIdCard;
     private String customerPhoneNumber;
     private String customerEmail;
     private String customerAddress;
+    private boolean isDelete;
 
     @ManyToOne
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
@@ -28,9 +29,9 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int customerId, String customerName, String customerDateOfBirth, String customerGender,
+    public Customer(int customerId, String customerName, String customerDateOfBirth, int customerGender,
                     String customerIdCard, String customerPhoneNumber, String customerEmail, String customerAddress,
-                    CustomerType customerType, Set<Contract> contracts) {
+                    boolean isDelete, CustomerType customerType, Set<Contract> contracts) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerDateOfBirth = customerDateOfBirth;
@@ -39,6 +40,7 @@ public class Customer {
         this.customerPhoneNumber = customerPhoneNumber;
         this.customerEmail = customerEmail;
         this.customerAddress = customerAddress;
+        this.isDelete = isDelete;
         this.customerType = customerType;
         this.contracts = contracts;
     }
@@ -67,11 +69,11 @@ public class Customer {
         this.customerDateOfBirth = customerDateOfBirth;
     }
 
-    public String getCustomerGender() {
+    public int getCustomerGender() {
         return customerGender;
     }
 
-    public void setCustomerGender(String customerGender) {
+    public void setCustomerGender(int customerGender) {
         this.customerGender = customerGender;
     }
 
@@ -121,5 +123,13 @@ public class Customer {
 
     public void setContracts(Set<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 }

@@ -1,14 +1,10 @@
-package com.example.module.facility;
+package com.example.dto;
 
-import com.example.module.contract.Contract;
+import com.example.module.facility.FacilityType;
+import com.example.module.facility.RentType;
 
-import javax.persistence.*;
-import java.util.Set;
+public class FacilityDto {
 
-@Entity
-public class Facility {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer facilityId;
     private String facilityName;
     private String facilityArea;
@@ -19,27 +15,16 @@ public class Facility {
     private String facilityPoolArea;
     private String facilityNumberOfFloors;
     private String facilityFree;
-    private boolean isDelete;
-
-    @ManyToOne
-    @JoinColumn(name = "facility_type_id", referencedColumnName = "facilityTypeId")
     private FacilityType facilityType;
-
-
-    @ManyToOne
-    @JoinColumn(name = "rent_type_id",referencedColumnName = "rentTypeId")
     private RentType rentType;
 
-    @OneToMany(mappedBy = "facility")
-    private Set<Contract> contracts;
-
-    public Facility() {
+    public FacilityDto() {
     }
 
-    public Facility(Integer facilityId, String facilityName, String facilityArea, String facilityCost, String facilityMaxPeople,
-                    String facilityStandardRoom, String facilityDescriptionOtherConvenience, String facilityPoolArea,
-                    String facilityNumberOfFloors, String facilityFree, boolean isDelete, FacilityType facilityType,
-                    RentType rentType, Set<Contract> contracts) {
+    public FacilityDto(Integer facilityId, String facilityName, String facilityArea, String facilityCost, String facilityMaxPeople,
+                       String facilityStandardRoom, String facilityDescriptionOtherConvenience, String facilityPoolArea,
+                       String facilityNumberOfFloors, String facilityFree, boolean isDelete, FacilityType facilityType,
+                       RentType rentType) {
         this.facilityId = facilityId;
         this.facilityName = facilityName;
         this.facilityArea = facilityArea;
@@ -50,10 +35,8 @@ public class Facility {
         this.facilityPoolArea = facilityPoolArea;
         this.facilityNumberOfFloors = facilityNumberOfFloors;
         this.facilityFree = facilityFree;
-        this.isDelete = isDelete;
         this.facilityType = facilityType;
         this.rentType = rentType;
-        this.contracts = contracts;
     }
 
     public Integer getFacilityId() {
@@ -150,21 +133,5 @@ public class Facility {
 
     public void setRentType(RentType rentType) {
         this.rentType = rentType;
-    }
-
-    public Set<Contract> getContracts() {
-        return contracts;
-    }
-
-    public void setContracts(Set<Contract> contracts) {
-        this.contracts = contracts;
-    }
-
-    public boolean isDelete() {
-        return isDelete;
-    }
-
-    public void setDelete(boolean delete) {
-        isDelete = delete;
     }
 }
