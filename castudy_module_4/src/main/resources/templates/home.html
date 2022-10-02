@@ -9,7 +9,7 @@
 </head>
 <body>
 <header th:fragment="header" class="sticky-top">
-<div class="container-fluid bg-black-500 d-flex myCSS" style="height: 100px" th:fragment="">
+<div class="container-fluid bg-black-500 d-flex myCSS" style="height: 100px;background-color: cornflowerblue" th:fragment="">
     <img class="h-100 p-4" src="https://www.furama.com/images/LOGOFurama_4C_Normal.png" alt="">
     <img class="ms-5 ps-5" src="https://furamavietnam.com/wp-content/uploads/2019/02/Ariyana-Tourism-Complex-02-2.png"
          alt="">
@@ -31,8 +31,9 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">Employee</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/employee">Employee list</a></li>
-                        <li><a class="dropdown-item" href="/employee?action=create">Add new Employee</a></li>
+                        <li><a class="dropdown-item" th:href="@{/employee/list}">Employee list</a></li>
+                        <li><a class="dropdown-item" th:href="@{/employee/create}">Add new Employee</a></li>
+
                     </ul>
                 </li>
 
@@ -49,8 +50,8 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">Facility</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/facility">Facility list</a></li>
-                        <li><a class="dropdown-item" href="#">Add new Facility</a></li>
+                        <li><a class="dropdown-item" th:href="@{/facility/list}">Facility list</a></li>
+                        <li><a class="dropdown-item" th:href="@{/facility/create}">Add new Facility</a></li>
                     </ul>
                 </li>
 
@@ -58,7 +59,7 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">Contract</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/contract">Contract list</a></li>
+                        <li><a class="dropdown-item" th:href="@{contract/list}">Contract list</a></li>
                         <li><a class="dropdown-item" href="#">Add new Contract</a></li>
                     </ul>
                 </li>

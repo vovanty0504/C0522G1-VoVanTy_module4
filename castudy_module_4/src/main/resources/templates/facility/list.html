@@ -27,27 +27,31 @@
 <body>
 <div th:replace="~{/home::header}"></div>
 <div class="p-3">
+    <h2 class="text-center fw-bold">FACILITY LIST</h2>
+
     <h2 class="text-center fw-bold">CUSTOMER LIST</h2>
+    <div th:if="${mess}">
+        <div class="justify-content-center d-flex">
+            <div class="alert alert-success alert-dismissible fade show w-50 text-center">
+                <strong th:text="${mess}"></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    </div>
 
     <nav class="navbar navbar-expand-lg pb-0 mb-0">
         <div class="container-fluid">
-            <a th:href="@{/customer/create}">
+            <a th:href="@{/facility/create}">
                 <button class="btn btn-success btn-outline-secondary btn-sm">
                     <span class="fa-solid fa-person-circle-plus text-light h5 my-auto me-1"></span>
-                    <span class="text-light"> Add new Customer</span>
+                    <span class="text-light"> Add new Facility</span>
                 </button>
             </a>
 
-            <form class="d-flex my-2" role="search" th:action="@{/customer/list}">
+            <form class="d-flex my-2" role="search" th:action="@{/facility/list}">
                 <input class="form-control me-2" type="text" placeholder="Input search Name" aria-label="Search"
                        name="nameSearch">
 
-                <input class="form-control me-2" type="text" placeholder="Input search address" aria-label="Search"
-                       name="addressSearch">
-
-
-                <input class="form-control me-2" type="text" placeholder="Input search phone" aria-label="Search"
-                       name="phoneSearch">
 
                 <button class="btn btn-outline-success" type="submit" name="action" value="search">
                     <i class="fa-solid fa-magnifying-glass"></i></button>
@@ -56,7 +60,7 @@
     </nav>
 
 
-    <table class="table table-striped table-bordered" id="customerTable">
+    <table class="table table-striped table-bordered" id="facilityTable">
         <thead>
         <tr>
             <th>STT</th>
@@ -212,16 +216,16 @@
         </div>
     </div>
 </div>
-<!--<div>-->
-<!--    <a th:href="@{'/customer/list'(page=${customerList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},-->
-<!--    phoneSearch=${phoneSearch})}" th:if="${customerList.hasPrevious()}">Previous</a>-->
-<!--    <span th:text="${customerList.number + 1}"></span>/-->
-<!--    <span th:text="${customerList.totalPages }"></span>-->
-<!--    <a th:href="@{'/customer/list'(page=${customerList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},-->
-<!--    phoneSearch=${phoneSearch})}" th:if="${customerList.hasNext()}">Next</a>-->
-<!--</div>-->
-<!--<a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Back to HOME</a>-->
-<!--</div>-->
+<div>
+    <a th:href="@{'/facility/list'(page=${facilityList.number - 1}, nameSearch=${nameSearch})}"
+       th:if="${facilityList.hasPrevious()}">Previous</a>
+    <span th:text="${facilityList.number + 1}"></span>/
+    <span th:text="${facilityList.totalPages }"></span>
+    <a th:href="@{'/facility/list'(page=${facilityList.number + 1},nameSearch=${nameSearch})}"
+       th:if="${facilityList.hasNext()}">Next</a>
+</div>
+<a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Back to HOME</a>
+</div>
 <script>
 
 </script>

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeService implements IEmployeeService {
 
@@ -15,7 +17,27 @@ public class EmployeeService implements IEmployeeService {
     private IEmployeeRepository employeeRepository;
 
     @Override
-    public Page<Employee> findAll(Pageable pageable) {
-        return employeeRepository.findAll(pageable);
+    public Page<Employee> searchEmployee(String nameSearch, String addressSearch, String phoneSearch, Pageable pageable) {
+        return employeeRepository.searchEmployee(nameSearch,addressSearch,phoneSearch,pageable);
+    }
+
+    @Override
+    public void save(Employee employee) {
+        employeeRepository.save(employee);
+    }
+
+    @Override
+    public Optional<Employee> findById(Integer id) {
+        return employeeRepository.findById(id);
+    }
+
+    @Override
+    public void deleteLogical(Integer id) {
+         employeeRepository.deleteLogical(id);
+    }
+
+    @Override
+    public void update(Employee employee) {
+      employeeRepository.save(employee);
     }
 }

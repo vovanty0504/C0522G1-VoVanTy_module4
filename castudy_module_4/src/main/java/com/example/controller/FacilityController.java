@@ -60,15 +60,20 @@ public class FacilityController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute @Validated FacilityDto facilityDto, BindingResult bindingResult,
-                       RedirectAttributes redirectAttributes) {
+                       RedirectAttributes redirectAttributes,Model model) {
 
         if (bindingResult.hasFieldErrors()) {
+            List<FacilityType> facilityTypeList = facilityTypeService.findAll();
+            List<RentType> rentTypeList = rentTypeService.findAll();
+            model.addAttribute("facilityTypeList",facilityTypeList);
+            model.addAttribute("rentTypeList",rentTypeList);
             return "facility/create";
         } else {
             Facility facility = new Facility();
             BeanUtils.copyProperties(facilityDto, facility);
             facilityService.save(facility);
-            redirectAttributes.addFlashAttribute("mess", facility.getFacilityName() + "thành công");
+            redirectAttributes.addFlashAttribute("mess", facility.getFacilityName() + " " +
+                    "thêm mới thành công");
             return "redirect:/facility/list";
         }
     }
@@ -77,7 +82,7 @@ public class FacilityController {
     public String delete(@RequestParam(value = "idDelete") Integer id, RedirectAttributes redirectAttributes) {
         facilityService.deleteLogical(id);
         redirectAttributes.addFlashAttribute("mess", "xóa khách hàng" +
-                facilityService.findById(id).get().getFacilityName() + "thành công");
+                facilityService.findById(id).get().getFacilityName() + " thành công");
         return "redirect:/facility/list";
     }
 

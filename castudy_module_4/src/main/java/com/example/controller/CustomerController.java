@@ -54,15 +54,18 @@ public class CustomerController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute @Validated CustomerDto customerDto, BindingResult bindingResult,
-                       RedirectAttributes redirectAttributes) {
+                       RedirectAttributes redirectAttributes,Model model) {
 
         if (bindingResult.hasFieldErrors()) {
+            List<CustomerType> customerTypes = customerTypeService.findAll();
+            model.addAttribute("customerTypes",customerTypes);
             return "customer/create";
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
             customerService.save(customer);
-            redirectAttributes.addFlashAttribute("mess", customer.getCustomerName() + "thành công");
+            redirectAttributes.addFlashAttribute("mess", customer.getCustomerName() +
+                    " thêm mới thành công");
             return "redirect:/customer/list";
         }
     }
@@ -71,7 +74,7 @@ public class CustomerController {
     public String delete(@RequestParam(value = "idDelete") Integer id, RedirectAttributes redirectAttributes) {
         customerService.deleteLogical(id);
         redirectAttributes.addFlashAttribute("mess", "xóa khách hàng" +
-                customerService.findById(id).get().getCustomerName() + "thành công");
+                customerService.findById(id).get().getCustomerName() + "  thành công");
         return "redirect:/customer/list";
     }
 
@@ -94,7 +97,7 @@ public class CustomerController {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
             customerService.update(customer);
-            redirectAttributes.addFlashAttribute("message", "Chỉnh sửa khách hàng thành công!");
+            redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa khách hàng thành công!");
             return "redirect:/customer/list";
         }
     }

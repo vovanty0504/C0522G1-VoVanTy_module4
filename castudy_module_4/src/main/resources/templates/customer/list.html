@@ -28,6 +28,14 @@
 <div th:replace="~{/home::header}"></div>
 <div class="p-3">
     <h2 class="text-center fw-bold">CUSTOMER LIST</h2>
+    <div th:if="${mess}">
+        <div class="justify-content-center d-flex">
+            <div class="alert alert-success alert-dismissible fade show w-50 text-center">
+                <strong th:text="${mess}"></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    </div>
 
     <nav class="navbar navbar-expand-lg pb-0 mb-0">
         <div class="container-fluid">
