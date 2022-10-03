@@ -1,12 +1,10 @@
 package com.example.controller;
 
 
-import com.example.dto.CustomerDto;
 import com.example.dto.FacilityDto;
-import com.example.module.customer.Customer;
-import com.example.module.facility.Facility;
-import com.example.module.facility.FacilityType;
-import com.example.module.facility.RentType;
+import com.example.model.facility.Facility;
+import com.example.model.facility.FacilityType;
+import com.example.model.facility.RentType;
 import com.example.service.facility.IFacilityService;
 import com.example.service.facility.IFacilityTypeService;
 import com.example.service.facility.IRentTypeService;
@@ -38,7 +36,7 @@ public class FacilityController {
     private IRentTypeService rentTypeService;
 
     @GetMapping("/list")
-    public String showList(@PageableDefault(value = 2) Pageable pageable,
+    public String showList(@PageableDefault(value = 5) Pageable pageable,
                            @RequestParam(value = "nameSearch", defaultValue = "") String nameSearch, Model model) {
         List<FacilityType> facilityTypeList = facilityTypeService.findAll();
         List<RentType> rentTypeList = rentTypeService.findAll();
@@ -88,12 +86,10 @@ public class FacilityController {
 
     @GetMapping("/edit/{id}")
     public String showFormEdit(@PathVariable Integer id, Model model) {
-        Facility facility = facilityService.findById(id).get();
-        FacilityDto facilityDto = new FacilityDto();
-        BeanUtils.copyProperties(facility, facilityDto);
+
         model.addAttribute("rentTypeList", rentTypeService.findAll());
         model.addAttribute("facilityTypeList", facilityTypeService.findAll());
-        model.addAttribute("facilityDto", facilityDto);
+        model.addAttribute("facilityDto", facilityService.findById(id).get());
         return "facility/edit";
     }
 

@@ -1,6 +1,6 @@
 package com.example.service.employee;
 
-import com.example.module.employee.Position;
+import com.example.model.employee.Position;
 
 import java.util.List;
 

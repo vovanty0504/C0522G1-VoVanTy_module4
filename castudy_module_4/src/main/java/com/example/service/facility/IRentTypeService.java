@@ -1,7 +1,7 @@
 package com.example.service.facility;
 
 
-import com.example.module.facility.RentType;
+import com.example.model.facility.RentType;
 
 import java.util.List;
 

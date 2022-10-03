@@ -46,20 +46,20 @@
                 </button>
             </a>
 
-            <form class="d-flex my-2" role="search" th:action="@{/contract/list}">
-                <input class="form-control me-2" type="text" placeholder="Input search Name" aria-label="Search"
-                       name="nameSearch">
+<!--            <form class="d-flex my-2" role="search" th:action="@{/contract/list}">-->
+<!--                <input class="form-control me-2" type="text" placeholder="Input search Name" aria-label="Search"-->
+<!--                       name="nameSearch">-->
 
-                <input class="form-control me-2" type="text" placeholder="Input search address" aria-label="Search"
-                       name="addressSearch">
+<!--                <input class="form-control me-2" type="text" placeholder="Input search address" aria-label="Search"-->
+<!--                       name="addressSearch">-->
 
 
-                <input class="form-control me-2" type="text" placeholder="Input search phone" aria-label="Search"
-                       name="phoneSearch">
+<!--                <input class="form-control me-2" type="text" placeholder="Input search phone" aria-label="Search"-->
+<!--                       name="phoneSearch">-->
 
-                <button class="btn btn-outline-success" type="submit" name="action" value="search">
-                    <i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
+<!--                <button class="btn btn-outline-success" type="submit" name="action" value="search">-->
+<!--                    <i class="fa-solid fa-magnifying-glass"></i></button>-->
+<!--            </form>-->
         </div>
     </nav>
 
@@ -69,7 +69,8 @@
         <tr>
             <th>STT</th>
             <th>Dịch Vụ</th>
-            <th>Khách Hàng</th>
+            <th>Tên Nhân Viên</th>
+            <th>Tên Khách Hàng </th>
             <th>Ngày Bắt Đầu</th>
             <th>Ngày Kết Thúc</th>
             <th>Tiền Cọc</th>
@@ -80,7 +81,25 @@
         </tr>
         </thead>
         <tbody>
+        <tr th:each="contract,status:${contractList}">
+            <td th:text="${status.count}"></td>
+            <td th:text="${contract.facilityName}"></td>
+            <td th:text="${contract.employeeName}"></td>
+            <td th:text="${contract.customerName}"></td>
+            <td th:text="${contract.startDate}"></td>
+            <td th:text="${contract.endDate}"></td>
+            <td th:text="${contract.deposit}"></td>
+            <td th:text="${contract.totalMoney}"></td>
+<!--            <td th:text="${'₫ ' + contract.totalMoney}"></td>-->
 
+            <!--            <td th:if="${employee.employeeId}" th:text="${employee.position.positionName}"></td>-->
+<!--            <td th:unless="${employee.position}"></td>-->
+<!--            <td th:if="${employee.employeeId}" th:text="${employee.division.divisionName}"></td>-->
+<!--            <td th:unless="${employee.division}"></td>-->
+<!--            <td th:if="${employee.employeeId}" th:text="${employee.educationDegree.educationDegreeName}"></td>-->
+<!--            <td th:unless="${employee.educationDegree}"></td>-->
+
+        </tr>
         </tbody>
     </table>
 

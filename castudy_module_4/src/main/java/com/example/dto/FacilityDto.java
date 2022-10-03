@@ -1,18 +1,38 @@
 package com.example.dto;
 
-import com.example.module.facility.FacilityType;
-import com.example.module.facility.RentType;
+import com.example.model.facility.FacilityType;
+import com.example.model.facility.RentType;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class FacilityDto {
 
     private Integer facilityId;
+
+    @NotBlank(message = "Tên dịch vụ không được để trống.")
+    @Pattern(regexp = "^(([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5}( \\d*)?)| *$",
+            message = "Tên dịch vụ được phép chứa số, và các kí tự đầu tiên của mỗi từ phải viết hoa.")
     private String facilityName;
+
+    @NotBlank(message = "Diện tích sử dụng không được để trống.")
+    @Pattern(regexp = "^[1-9]\\d*| *$", message = "Diện tích sử dụng phải là số nguyên dương.")
     private String facilityArea;
+
+    @NotBlank(message = "Chi phí thuê không được để trống.")
+    @Pattern(regexp = "^[1-9]\\d*| *$", message = "Chi phí thuê (VNĐ) phải là số nguyên dương.")
     private String facilityCost;
+
+    @NotBlank(message = "Số người tối đa không được để trống.")
+    @Pattern(regexp = "^[1-9]\\d*| *$", message = "Số người tối đa phải là số nguyên dương.")
     private String facilityMaxPeople;
     private String facilityStandardRoom;
     private String facilityDescriptionOtherConvenience;
+
+    @Pattern(regexp = "^[1-9]\\d*| *$", message = "Diện tích hồ bơi phải là số nguyên dương.")
     private String facilityPoolArea;
+
+    @Pattern(regexp = "^[1-9]\\d*| *$", message = "Số tầng phải là số nguyên dương.")
     private String facilityNumberOfFloors;
     private String facilityFree;
     private FacilityType facilityType;

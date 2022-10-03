@@ -1,8 +1,8 @@
 package com.example.controller;
 
 import com.example.dto.CustomerDto;
-import com.example.module.customer.Customer;
-import com.example.module.customer.CustomerType;
+import com.example.model.customer.Customer;
+import com.example.model.customer.CustomerType;
 import com.example.service.customer.ICustomerService;
 import com.example.service.customer.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
@@ -31,7 +31,7 @@ public class CustomerController {
     private ICustomerTypeService customerTypeService;
 
     @GetMapping("/list")
-    public String showList(@PageableDefault(value = 2) Pageable pageable,
+    public String showList(@PageableDefault(value = 5) Pageable pageable,
                            @RequestParam(value = "nameSearch", defaultValue = "") String nameSearch,
                            @RequestParam(value = "addressSearch", defaultValue = "") String addressSearch,
                            @RequestParam(value = "phoneSearch", defaultValue = "") String phoneSearch, Model model) {
@@ -58,7 +58,7 @@ public class CustomerController {
 
         if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypes = customerTypeService.findAll();
-            model.addAttribute("customerTypes",customerTypes);
+            model.addAttribute("customerType",customerTypes);
             return "customer/create";
         } else {
             Customer customer = new Customer();
@@ -80,11 +80,8 @@ public class CustomerController {
 
     @GetMapping("/edit/{id}")
     public String showFormEdit(@PathVariable Integer id, Model model) {
-        Customer customer = customerService.findById(id).get();
-        CustomerDto customerDto = new CustomerDto();
-        BeanUtils.copyProperties(customer, customerDto);
         model.addAttribute("customerType", customerTypeService.findAll());
-        model.addAttribute("customerDto", customerDto);
+        model.addAttribute("customerDto", customerService.findById(id).get());
         return "customer/edit";
     }
 
@@ -92,6 +89,8 @@ public class CustomerController {
     public String updateCustomer(@ModelAttribute @Validated CustomerDto customerDto, BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasFieldErrors()) {
+            List<CustomerType> customerTypes = customerTypeService.findAll();
+            model.addAttribute("customerType",customerTypes);
             return "customer/edit";
         } else {
             Customer customer = new Customer();

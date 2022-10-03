@@ -1,7 +1,7 @@
 package com.example.service.facility;
 
 
-import com.example.module.facility.FacilityType;
+import com.example.model.facility.FacilityType;
 
 import java.util.List;
 

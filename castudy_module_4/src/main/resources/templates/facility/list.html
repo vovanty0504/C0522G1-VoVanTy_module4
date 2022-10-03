@@ -29,7 +29,6 @@
 <div class="p-3">
     <h2 class="text-center fw-bold">FACILITY LIST</h2>
 
-    <h2 class="text-center fw-bold">CUSTOMER LIST</h2>
     <div th:if="${mess}">
         <div class="justify-content-center d-flex">
             <div class="alert alert-success alert-dismissible fade show w-50 text-center">
@@ -49,7 +48,7 @@
             </a>
 
             <form class="d-flex my-2" role="search" th:action="@{/facility/list}">
-                <input class="form-control me-2" type="text" placeholder="Input search Name" aria-label="Search"
+                <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Tên" aria-label="Search"
                        name="nameSearch">
 
 
@@ -64,21 +63,21 @@
         <thead>
         <tr>
             <th>STT</th>
-            <th>Name</th>
-            <th>Area</th>
-            <th>Cost</th>
-            <th>Max People</th>
-            <th>Pool Area</th>
-            <th>Facility Free</th>
-            <th>Rent Type</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            <th>View</th>
+            <th>Tên Cơ Sở</th>
+            <th>Diện Tích</th>
+            <th>Phí</th>
+            <th>Số Người</th>
+            <th>Diện Tích Hồ Bơi</th>
+            <th>Cơ Sở Miễn Phí</th>
+            <th>Loại Thuê</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+            <th>Thông Tin</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="facility, status : ${facilityList}">
-            <td th:text="${facilityList.number * 2 + status.count}"></td>
+            <td th:text="${facilityList.number * 5 + status.count}"></td>
             <td th:text="${facility.facilityName}"></td>
             <td th:text="${facility.facilityArea}"></td>
             <td th:text="${facility.facilityCost}"></td>
@@ -224,7 +223,7 @@
     <a th:href="@{'/facility/list'(page=${facilityList.number + 1},nameSearch=${nameSearch})}"
        th:if="${facilityList.hasNext()}">Next</a>
 </div>
-<a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Back to HOME</a>
+<!--<a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Back to HOME</a>-->
 </div>
 <script>
 

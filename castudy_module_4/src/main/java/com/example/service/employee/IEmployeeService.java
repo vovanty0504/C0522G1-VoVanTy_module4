@@ -1,11 +1,11 @@
 package com.example.service.employee;
 
 
-import com.example.module.customer.Customer;
-import com.example.module.employee.Employee;
+import com.example.model.employee.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IEmployeeService {
@@ -19,6 +19,8 @@ public interface IEmployeeService {
     void deleteLogical(Integer id);
 
     void update(Employee employee);
+
+    List<Employee> findAll();
 
 
 }

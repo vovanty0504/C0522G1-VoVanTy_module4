@@ -39,6 +39,7 @@
 
             <div class="mt-3 form-group">
                 <label for="name" class="h6">Tên dịch vụ:</label>
+                <p style="color: red" th:if="${#fields.hasErrors('facilityName')}" th:errors="*{facilityName}"></p>
                 <div class="input-group">
                     <input type="text" id="name" class="form-control" placeholder="Nhập tên dịch vụ.."
                            th:field="*{facilityName}" required
@@ -50,6 +51,7 @@
 
             <div class="mt-3 form-group">
                 <label for="area" class="h6">Diện tích sử dụng (m<sup>2</sup>):</label>
+                <p style="color: red" th:if="${#fields.hasErrors('facilityArea')}" th:errors="*{facilityArea}"></p>
                 <div class="input-group">
                     <input type="number" id="area" class="form-control" placeholder="Nhập diện tích sử dụng.."
                            th:field="*{facilityArea}" required pattern="^[1-9]\d*$"
@@ -60,6 +62,7 @@
 
             <div class="mt-3 form-group">
                 <label for="cost" class="h6">Chi phí thuê (VNĐ):</label>
+                <p style="color: red" th:if="${#fields.hasErrors('facilityCost')}" th:errors="*{facilityCost}"></p>
                 <div class="input-group">
                     <input type="number" id="cost" class="form-control" placeholder="Nhập chi phí thuê.."
                            th:field="*{facilityCost}" required pattern="^[1-9]\d*$"
@@ -70,6 +73,7 @@
 
             <div class="mt-3 form-group">
                 <label for="maxPeople" class="h6">Số người tối đa:</label>
+                <p style="color: red" th:if="${#fields.hasErrors('facilityMaxPeople')}" th:errors="*{facilityMaxPeople}"></p>
                 <div class="input-group">
                     <input type="number" id="maxPeople" class="form-control" placeholder="Nhập số người tối đa.."
                            th:field="*{facilityMaxPeople}" required pattern="^[1-9]\d*$"
@@ -79,6 +83,7 @@
             </div>
 
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId != 3}">
+                <p style="color: red" th:if="${#fields.hasErrors('facilityStandardRoom')}" th:errors="*{facilityStandardRoom}"></p>
                 <label for="standardRoom" class="h6">Tiêu chuẩn phòng:</label>
                 <div class="input-group">
                     <input type="text" id="standardRoom" class="form-control" placeholder="Nhập tiêu chuẩn phòng.."
@@ -91,6 +96,8 @@
 
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId != 3}">
                 <label for="description" class="h6">Mô tả tiện nghi khác:</label>
+                <p style="color: red" th:if="${#fields.hasErrors('facilityDescriptionOtherConvenience')}"
+                   th:errors="*{facilityDescriptionOtherConvenience}"></p>
                 <div class="input-group">
                     <input type="text" id="description" class="form-control" placeholder="Nhập mô tả tiện nghi khác.."
                            th:field="*{facilityDescriptionOtherConvenience}"/>
@@ -102,6 +109,7 @@
 
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId == 1}">
                 <label for="poolArea" class="h6">Diện tích hồ bơi (m<sup>2</sup>):</label>
+                <p style="color: red" th:if="${#fields.hasErrors('facilityPoolArea')}" th:errors="*{facilityPoolArea}"></p>
                 <div class="input-group">
                     <input type="number" id="poolArea" class="form-control" placeholder="Nhập diện tích hồ bơi.."
                            th:field="*{facilityPoolArea}"/>
@@ -112,6 +120,8 @@
                    th:value="${''}"/>
 
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId != 3}">
+                <p style="color: red" th:if="${#fields.hasErrors('facilityNumberOfFloors')}"
+                   th:errors="*{facilityNumberOfFloors}"></p>
                 <label for="numberOfFloors" class="h6">Số tầng:</label>
                 <div class="input-group">
                     <input type="number" id="numberOfFloors" class="form-control" placeholder="Nhập số tầng.."

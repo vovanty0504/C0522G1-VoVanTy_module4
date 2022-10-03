@@ -1,12 +1,10 @@
 package com.example.controller;
 
 import com.example.dto.EmployeeDto;
-import com.example.module.customer.Customer;
-import com.example.module.customer.CustomerType;
-import com.example.module.employee.Division;
-import com.example.module.employee.EducationDegree;
-import com.example.module.employee.Employee;
-import com.example.module.employee.Position;
+import com.example.model.employee.Division;
+import com.example.model.employee.EducationDegree;
+import com.example.model.employee.Employee;
+import com.example.model.employee.Position;
 import com.example.service.employee.IDivisionService;
 import com.example.service.employee.IEducationDegreeService;
 import com.example.service.employee.IEmployeeService;
@@ -42,7 +40,7 @@ public class EmployeeController {
     private IPositionService positionService;
 
     @GetMapping("/list")
-    public String showList(@PageableDefault(value = 2) Pageable pageable,
+    public String showList(@PageableDefault(value = 5) Pageable pageable,
                            @RequestParam(value = "nameSearch", defaultValue = "") String nameSearch,
                            @RequestParam(value = "addressSearch", defaultValue = "") String addressSearch,
                            @RequestParam(value = "phoneSearch", defaultValue = "") String phoneSearch, Model model) {
@@ -80,31 +78,34 @@ public class EmployeeController {
     public String delete(@RequestParam(value = "idDelete") Integer id, RedirectAttributes redirectAttributes) {
         employeeService.deleteLogical(id);
         redirectAttributes.addFlashAttribute("mess", "xóa khách hàng" +
-                employeeService.findById(id).get().getEmployeeName() + "thành công");
+                employeeService.findById(id).get().getEmployeeName() + " thành công");
         return "redirect:/employee/list";
     }
 
-//    @GetMapping("/edit/{id}")
-//    public String showFormEdit(@PathVariable Integer id, Model model) {
-//        Customer customer = customerService.findById(id).get();
-//        CustomerDto customerDto = new CustomerDto();
-//        BeanUtils.copyProperties(customer, customerDto);
-//        model.addAttribute("customerType", customerTypeService.findAll());
-//        model.addAttribute("customerDto", customerDto);
-//        return "customer/edit";
-//    }
-//
-//    @PostMapping("/update")
-//    public String updateCustomer(@ModelAttribute @Validated CustomerDto customerDto, BindingResult bindingResult,
-//                                 RedirectAttributes redirectAttributes, Model model) {
-//        if (bindingResult.hasFieldErrors()) {
-//            return "customer/edit";
-//        } else {
-//            Customer customer = new Customer();
-//            BeanUtils.copyProperties(customerDto, customer);
-//            customerService.update(customer);
-//            redirectAttributes.addFlashAttribute("message", "Chỉnh sửa khách hàng thành công!");
-//            return "redirect:/customer/list";
-//        }
-//    }
+    @GetMapping("/edit/{id}")
+    public String showFormEdit(@PathVariable Integer id, Model model) {
+        model.addAttribute("positionList", positionService.findAll());
+        model.addAttribute("divisionList", divisionService.findAll());
+        model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+        model.addAttribute("employeeDto", employeeService.findById(id).get());
+        return "employee/edit";
+    }
+
+    @PostMapping("/update")
+    public String updateCustomer(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes,Model model ) {
+        if(bindingResult.hasFieldErrors()){
+            model.addAttribute("positionList", positionService.findAll());
+            model.addAttribute("divisionList", divisionService.findAll());
+            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+            return "employee/edit";
+        }
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDto, employee);
+        employeeService.update(employee);
+        redirectAttributes.addFlashAttribute("message", "Chỉnh sửa khách hàng thành công!");
+        return "redirect:/employee/list";
+
+    }
+
 }

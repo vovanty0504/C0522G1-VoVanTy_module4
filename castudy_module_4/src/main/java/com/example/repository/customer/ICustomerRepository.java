@@ -1,7 +1,7 @@
 package com.example.repository.customer;
 
 
-import com.example.module.customer.Customer;
+import com.example.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

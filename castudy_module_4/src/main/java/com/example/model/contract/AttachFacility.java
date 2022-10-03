@@ -1,4 +1,4 @@
-package com.example.module.contract;
+package com.example.model.contract;
 
 import javax.persistence.*;
 import java.util.Set;

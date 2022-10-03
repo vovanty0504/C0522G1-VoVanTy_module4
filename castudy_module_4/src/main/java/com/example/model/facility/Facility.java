@@ -1,6 +1,6 @@
-package com.example.module.facility;
+package com.example.model.facility;
 
-import com.example.module.contract.Contract;
+import com.example.model.contract.Contract;
 
 import javax.persistence.*;
 import java.util.Set;

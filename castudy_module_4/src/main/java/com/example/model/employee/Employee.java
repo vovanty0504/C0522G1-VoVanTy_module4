@@ -1,7 +1,8 @@
-package com.example.module.employee;
+package com.example.model.employee;
 
 
-import com.example.module.contract.Contract;
+import com.example.model.contract.Contract;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -22,14 +23,17 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "position_id", referencedColumnName = "positionId")
+    @JsonManagedReference
     private Position position;
 
     @ManyToOne
     @JoinColumn(name = "education_id", referencedColumnName = "educationDegreeId")
+    @JsonManagedReference
     private EducationDegree educationDegree;
 
     @ManyToOne
     @JoinColumn(name = "division_id", referencedColumnName = "divisionId")
+    @JsonManagedReference
     private Division division;
 
     @OneToMany(mappedBy = "employee")

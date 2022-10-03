@@ -1,18 +1,42 @@
 package com.example.dto;
 
-import com.example.module.employee.Division;
-import com.example.module.employee.EducationDegree;
-import com.example.module.employee.Position;
+import com.example.model.employee.Division;
+import com.example.model.employee.EducationDegree;
+import com.example.model.employee.Position;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class EmployeeDto {
 
     private int employeeId;
+
+    @NotBlank(message = "Tên không được để trống.")
+    @Pattern(regexp = "^(([\\p{Lu}][\\p{Ll}]{1,8})(\\s([\\p{Lu}]|[\\p{Lu}][\\p{Ll}]{1,10})){0,5})| *$",
+            message = "Tên nhân viên không được chứa số, và các kí tự đầu tiên của mỗi từ phải viết hoa.")
     private String employeeName;
+
     private String employeeDateOfBirth;
+
+    @NotBlank(message = "Số CMND/CCCD không được để trống.")
+    @Pattern(regexp = "^(\\d{9}|\\d{12})| *$",
+            message = "Số CMND/CCCD phải đúng định dạng XXXXXXXXX hoặc XXXXXXXXXXXX (X là số 0-9).")
     private String employeeIdCard;
+
+    @NotBlank(message = "Lương không được để trống.")
+    @Pattern(regexp = "^[1-9]\\d*| *$", message = "Lương (VNĐ) phải là số nguyên dương.")
     private String employeeSalary;
+
+    @NotBlank(message = "Số điện thoại không được để trống.")
+    @Pattern(regexp = "^((0|[(]84[)][+])9[01]\\d{7})| *$", message =
+            "Số điện thoại phải đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx.")
     private String employeePhoneNumber;
+    @NotBlank(message = "Email không được để trống.")
+    @Email(message = "Địa chỉ email phải đúng định dạng.")
     private String employeeEmail;
+
+    @NotBlank(message = "Địa chỉ không được để trống.")
     private String employeeAddress;
     private Position position;
     private EducationDegree educationDegree;

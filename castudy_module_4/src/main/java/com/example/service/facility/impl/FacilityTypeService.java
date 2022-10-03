@@ -1,6 +1,6 @@
 package com.example.service.facility.impl;
 
-import com.example.module.facility.FacilityType;
+import com.example.model.facility.FacilityType;
 import com.example.repository.facility.IFacilityTypeRepository;
 import com.example.service.facility.IFacilityTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

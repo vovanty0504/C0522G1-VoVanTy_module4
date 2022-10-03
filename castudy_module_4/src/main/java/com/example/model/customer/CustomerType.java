@@ -1,4 +1,4 @@
-package com.example.module.customer;
+package com.example.model.customer;
 
 import javax.persistence.*;
 import java.util.Set;

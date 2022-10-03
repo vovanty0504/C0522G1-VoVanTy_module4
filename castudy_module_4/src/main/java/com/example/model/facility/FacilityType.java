@@ -1,4 +1,4 @@
-package com.example.module.facility;
+package com.example.model.facility;
 
 import javax.persistence.*;
 import java.util.Set;

@@ -1,5 +1,7 @@
-package com.example.module.employee;
+package com.example.model.employee;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,6 +14,7 @@ public class Position {
    private String positionName;
 
    @OneToMany(mappedBy = "division")
+   @JsonBackReference
    private Set<Employee> employees;
 
     public Position() {

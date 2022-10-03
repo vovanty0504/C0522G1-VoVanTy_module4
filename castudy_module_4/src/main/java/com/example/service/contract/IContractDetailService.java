@@ -1,7 +1,7 @@
 package com.example.service.contract;
 
 
-import com.example.module.contract.ContractDetail;
+import com.example.model.contract.ContractDetail;
 
 
 import java.util.List;

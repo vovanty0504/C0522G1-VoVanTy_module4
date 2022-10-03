@@ -1,6 +1,6 @@
-package com.example.module.customer;
+package com.example.model.customer;
 
-import com.example.module.contract.Contract;
+import com.example.model.contract.Contract;
 
 import javax.persistence.*;
 import java.util.Set;

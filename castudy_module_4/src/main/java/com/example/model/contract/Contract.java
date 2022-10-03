@@ -1,8 +1,8 @@
-package com.example.module.contract;
+package com.example.model.contract;
 
-import com.example.module.customer.Customer;
-import com.example.module.employee.Employee;
-import com.example.module.facility.Facility;
+import com.example.model.customer.Customer;
+import com.example.model.employee.Employee;
+import com.example.model.facility.Facility;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,7 +15,6 @@ public class Contract {
     private String contractStartDate;
     private String contractEndDate;
     private String contractDeposit;
-    private String totalMoney;
     private boolean isDelete;
 
     @ManyToOne
@@ -37,14 +36,12 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int contractId, String contractStartDate, String contractEndDate, String contractDeposit,
-                    String totalMoney, Employee employee, Customer customer, Facility facility,
+    public Contract(int contractId, String contractStartDate, String contractEndDate, String contractDeposit, Employee employee, Customer customer, Facility facility,
                     Set<ContractDetail> contractDetails) {
         this.contractId = contractId;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
         this.contractDeposit = contractDeposit;
-        this.totalMoney = totalMoney;
         this.employee = employee;
         this.customer = customer;
         this.facility = facility;
@@ -83,14 +80,6 @@ public class Contract {
         this.contractDeposit = contractDeposit;
     }
 
-    public String getTotalMoney() {
-        return totalMoney;
-    }
-
-    public void setTotalMoney(String totalMoney) {
-        this.totalMoney = totalMoney;
-    }
-
     public Employee getEmployee() {
         return employee;
     }
@@ -121,5 +110,13 @@ public class Contract {
 
     public void setContractDetails(Set<ContractDetail> contractDetails) {
         this.contractDetails = contractDetails;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 }

@@ -1,11 +1,11 @@
 package com.example.service.facility;
 
 
-import com.example.module.customer.Customer;
-import com.example.module.facility.Facility;
+import com.example.model.facility.Facility;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -20,4 +20,6 @@ public interface IFacilityService {
     void deleteLogical(Integer id);
 
     void update(Facility facility);
+
+    List<Facility> findAll();
 }

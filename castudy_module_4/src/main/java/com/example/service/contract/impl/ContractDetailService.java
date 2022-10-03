@@ -1,6 +1,6 @@
 package com.example.service.contract.impl;
 
-import com.example.module.contract.ContractDetail;
+import com.example.model.contract.ContractDetail;
 import com.example.repository.contract.IContractDetailRepository;
 import com.example.service.contract.IContractDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
