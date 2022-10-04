@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.model.contract.Contract;
 import com.example.model.contract.ContractDetail;
 import com.example.service.contract.IAttachFacilityService;
+import com.example.service.contract.IContractDetailService;
 import com.example.service.contract.IContractService;
 import com.example.service.customer.ICustomerService;
 import com.example.service.employee.IEmployeeService;
@@ -12,10 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -37,15 +35,18 @@ public class ContractController {
     @Autowired
     private ICustomerService customerService;
 
+    @Autowired
+    private IContractDetailService contractDetailService;
+
     @GetMapping("/list")
     public String showList(@PageableDefault(value = 2) Pageable pageable, Model model) {
-        model.addAttribute("attachFacilityList",attachFacilityService.findAll() );
+        model.addAttribute("attachFacilityList", attachFacilityService.findAll());
         model.addAttribute("facilityList", facilityService.findAll());
         model.addAttribute("employeeList", employeeService.findAll());
         model.addAttribute("customerList", customerService.findAll());
         model.addAttribute("contractList", contractService.findAll());
-        model.addAttribute("contract",new Contract());
-        model.addAttribute("contractDetail",new ContractDetail());
+        model.addAttribute("contract", new Contract());
+        model.addAttribute("contractDetail", new ContractDetail());
         return "contract/list";
     }
 
@@ -54,5 +55,20 @@ public class ContractController {
         contractService.save(contract);
         redirectAttributes.addFlashAttribute("mess", "Thêm mới hợp đồng thành công!");
         return "redirect:/contract/list";
+    }
+
+    @PostMapping("/add-contract-detail")
+    public String saveDetail(@ModelAttribute ContractDetail contractDetail, RedirectAttributes redirectAttributes) {
+        contractDetailService.save(contractDetail);
+        redirectAttributes.addFlashAttribute("message", "Thêm mới hợp đồng chi tiết thành công!");
+
+        return "redirect:/contract/list";
+    }
+
+    @GetMapping("/{id}")
+    public String showAttachFacility(@PathVariable Integer id, Model model) {
+        model.addAttribute("contractDetails", contractDetailService.showAll(id));
+
+        return "contract/attach_list";
     }
 }

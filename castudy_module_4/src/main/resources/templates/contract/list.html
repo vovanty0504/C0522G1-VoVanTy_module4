@@ -169,83 +169,73 @@
             <td th:text="${contract.deposit}"></td>
             <td th:text="${contract.totalMoney}"></td>
             <td class="text-center">
-                <button
+                <button th:attr="onclick=|addContractDetail('${contract.contractId}')|"
                         class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#addContractdetail">
+                        data-bs-target="#addContractDetail">
                     <span class="fa-solid fa-plus text-light h6 m-auto"></span>
                 </button>
 
-                <button
-                        class="btn btn-primary btn-outline-secondary btn-sm ms-3 px-3" data-bs-toggle="modal"
-                        data-bs-target="#showAttachFacility">
-                    <span class="text-light m-auto">Danh Sách Dịch Vụ Đi Kèm</span>
-                </button>
+                <a th:href="@{/contract/__${contract.contractId}__}">
+                    <button class="btn btn-primary btn-outline-secondary btn-sm ms-3 px-3">
+                        <span class="text-light m-auto">Danh sách dịch vụ đi kèm</span>
+                    </button>
+                </a>
             </td>
-
         </tr>
         </tbody>
     </table>
 
 
-    <div class="modal fade" id="viewCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"
-         aria-hidden="true">
+    <div class="modal fade" id="addContractDetail" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title text-center" id="exampleModalLabel2">Thông Tin Khách Hàng</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <form class="border border-2 border-success p-3 rounded formCSS"
+                      th:action="@{/contract/add-contract-detail}"
+                      th:object="${contractDetail}" method="POST">
+                    <div class="modal-header">
+                        <h3 class="modal-title fw-bold text-primary" id="exampleModalLabel4">THÊM DỊCH VỤ ĐI KÈM</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
-                <div class="table table-success table-striped">
-                    <table>
-                        <tr>
-                            <td class="h6 pe-3">Tên Khách Kàng:</td>
-                            <td id="name" class="text-primary h6"></td>
-                        </tr>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" name="contractId" id="contractId" th:field="*{contract.contractId}"
+                                   readonly/>
 
-                        <tr>
-                            <td class="h6 pe-3">Ngày Sinh:</td>
-                            <td id="birthday" class="text-primary"></td>
-                        </tr>
+                            <div class="form-group">
+                                <label class="h6" for="attachFacility">Tên Dịch Vụ Đi Kèm:</label>
+                                <div class="input-group">
+                                    <select id="attachFacility" class="form-select"
+                                            th:field="*{attachFacility.attachFacilityId}">
+                                        <option th:each="item : ${attachFacilityList}" th:value="${item.attachFacilityId}"
+                                                th:text="${item.attachFacilityName + ' (₫ ' + item.attachFacilityCost + ')'}"></option>
+                                    </select>
+                                    <span class="input-group-text"><i class="fa-solid fa-file-signature"></i></span>
+                                </div>
+                            </div>
 
-                        <tr>
-                            <td class="h6 pe-3">Giới Tính:</td>
-                            <td id="gender" class="text-primary"></td>
-                        </tr>
+                            <div class="mt-3 form-group">
+                                <label for="quantity" class="h6">Số Lượng:</label>
+                                <div class="input-group">
+                                    <input type="number" id="quantity" class="form-control"
+                                           placeholder="Nhập số lượng..." th:field="*{contractDetailQuantity}" required
+                                           pattern="^[1-9]\d*$"
+                                           title="Số lượng phải là số nguyên dương."/>
+                                    <span class="input-group-text"></span>
+                                </div>
+                            </div>
+                        </div>
 
-                        <tr>
-                            <td class="h6 pe-3">Số CMND/CCCD:</td>
-                            <td id="idCard" class="text-primary"></td>
-                        </tr>
-
-                        <tr>
-                            <td class="h6 pe-3">Số Điện Thoại:</td>
-                            <td id="phone" class="text-primary"></td>
-                        </tr>
-
-                        <tr>
-                            <td class="h6 pe-3">Email:</td>
-                            <td id="email" class="text-primary"></td>
-                        </tr>
-
-                        <tr>
-                            <td class="h6 pe-3">Địa Chỉ:</td>
-                            <td id="address" class="text-primary"></td>
-                        </tr>
-
-                        <tr>
-                            <td class="h6 pe-3">Loại Khách:</td>
-                            <td id="type" class="text-primary"></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-success" value="delete">Lưu</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
     <script>
 
@@ -258,6 +248,10 @@
         function changeEndDate(startDate) {
             document.getElementById("endDate").min = startDate.value;
             document.getElementById("endDateForm").style.display = "block";
+        }
+
+        function addContractDetail(id) {
+            document.getElementById("contractId").value = id;
         }
     </script>
 
