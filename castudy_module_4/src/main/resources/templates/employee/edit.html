@@ -11,7 +11,7 @@
 <body>
 
 <div class="mx-5 px-5 pt-3">
-    <h2 class="text-center fw-bold text-light">Chỉnh sửa nhân viên</h2>
+    <h2 class="text-center fw-bold text-light">Chỉnh Sửa Nhân Viên</h2>
 
 
     <p class="text-center">
@@ -25,17 +25,17 @@
             <input type="hidden" th:field="*{employeeId}" readonly/>
 
             <div class="form-group">
-                <label for="name" class="h6">Tên nhân viên:</label>
+                <label for="name" class="h6">Tên Nhân Viên:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}"></p>
                 <div class="input-group">
-                    <input type="text" id="name" class="form-control" placeholder="Nhập tên nhân viên.."
+                    <input type="text" id="name" class="form-control" placeholder="Nhập Tên Nhân Viên.."
                            th:field="*{employeeName}"/>
                     <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>
                 </div>
             </div>
 
             <div class="mt-3 form-group">
-                <label for="dateOfBirth" class="h6">Ngày sinh:</label>
+                <label for="dateOfBirth" class="h6">Ngày Sinh:</label>
                 <input type="date" id="dateOfBirth" class="form-control" th:field="*{employeeDateOfBirth}"/>
             </div>
 
@@ -44,7 +44,7 @@
                 <label for="idCard" class="h6">Số CMND/CCCD:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('employeeIdCard')}" th:errors="*{employeeIdCard}"></p>
                 <div class="input-group">
-                    <input type="text" id="idCard" class="form-control" placeholder="Nhập số CMND/CCCD.."
+                    <input type="text" id="idCard" class="form-control" placeholder="Nhập Số CMND/CCCD.."
                            th:field="*{employeeIdCard}"/>
                     <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
                 </div>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="mt-3 form-group">
-                <label for="phone" class="h6">số điện thoại:</label>
+                <label for="phone" class="h6">Số Điện Thoại:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('employeePhoneNumber')}"
                    th:errors="*{employeePhoneNumber}"></p>
                 <div class="input-group">
@@ -75,18 +75,18 @@
                 <label for="email" class="h6">Email:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}"></p>
                 <div class="input-group">
-                    <input type="text" id="email" class="form-control" placeholder="Nhập email.."
+                    <input type="text" id="email" class="form-control" placeholder="Nhập Email.."
                            th:field="*{employeeEmail}"/>
                     <span class="input-group-text"><i class="fa-solid fa-envelope-circle-check"></i></span>
                 </div>
             </div>
 
             <div class="mt-3 form-group">
-                <label for="address" class="h6">Địa chỉ:</label>
+                <label for="address" class="h6">Địa Chỉ:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('employeeAddress')}"
                    th:errors="*{employeeAddress}"></p>
                 <div class="input-group">
-                    <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ.."
+                    <input type="text" id="address" class="form-control" placeholder="Nhập Địa Chỉ.."
                            th:field="*{employeeAddress}"/>
                     <span class="input-group-text"><i class="fa-solid fa-map-location-dot"></i></span>
                 </div>
@@ -95,7 +95,7 @@
             <div class="mt-3 form-group">
                 <label class="h6" for="position">Vị Trí:</label>
                 <div class="input-group">
-                    <select id="position" class="form-control" th:field="*{position.positionId}">
+                    <select id="position" class="form-select" th:field="*{position.positionId}">
                         <option th:each="item : ${positionList}" th:value="${item.positionId}"
                                 th:text="${item.positionName}"></option>
                     </select>
@@ -106,7 +106,7 @@
             <div class="mt-3 form-group">
                 <label class="h6" for="educationDegree">Học Vấn:</label>
                 <div class="input-group">
-                    <select id="educationDegree" class="form-control" th:field="*{educationDegree.educationDegreeId}">
+                    <select id="educationDegree" class="form-select" th:field="*{educationDegree.educationDegreeId}">
                         <option th:each="item : ${educationDegreeList}" th:value="${item.educationDegreeId}"
                                 th:text="${item.educationDegreeName}"></option>
                     </select>
@@ -117,7 +117,7 @@
             <div class="mt-3 form-group">
                 <label class="h6" for="division">Bộ Phận:</label>
                 <div class="input-group">
-                    <select id="division" class="form-control" th:field="*{division.divisionId}">
+                    <select id="division" class="form-select" th:field="*{division.divisionId}">
                         <option th:each="item : ${divisionList}" th:value="${item.divisionId}"
                                 th:text="${item.divisionName}"></option>
                     </select>

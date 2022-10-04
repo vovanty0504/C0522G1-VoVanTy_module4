@@ -32,51 +32,52 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown ms-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">Employee</a>
+                           aria-expanded="false">Nhân Viên</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/employee/list}">Employee list</a></li>
-                            <li><a class="dropdown-item" th:href="@{/employee/create}">Add new Employee</a></li>
+                            <li><a class="dropdown-item" th:href="@{/employee/list}">Danh Sách Nhân Viên</a></li>
+                            <li><a class="dropdown-item" th:href="@{/employee/create}">Thêm Mới Nhân Viên</a></li>
 
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown ms-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">Customer</a>
+                           aria-expanded="false">Khách Hàng</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/customer/list}">Customer list</a></li>
-                            <li><a class="dropdown-item" th:href="@{/customer/create}">Add new Customer</a></li>
+                            <li><a class="dropdown-item" th:href="@{/customer/list}">Danh Sách Khách Hàng</a></li>
+                            <li><a class="dropdown-item" th:href="@{/customer/create}">Thêm Mới Khách Hàng</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown ms-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">Facility</a>
+                           aria-expanded="false">Dịch Vụ</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/facility/list}">Facility list</a></li>
-                            <li><a class="dropdown-item" th:href="@{/facility/create}">Add new Facility</a></li>
+                            <li><a class="dropdown-item" th:href="@{/facility/list}">Danh Sách Cơ Sở</a></li>
+                            <li><a class="dropdown-item" th:href="@{/facility/create}">Thêm Mới Cơ sở</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown ms-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">Contract</a>
+                           aria-expanded="false">Hợp Đồng</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/contract/list}">Contract list</a></li>
-                            <li><a class="dropdown-item" href="#">Add new Contract</a></li>
+                            <li><a class="dropdown-item" th:href="@{/contract/list}">Danh Sách Hợp Đồng</a></li>
+                            <li><a class="dropdown-item" href="#">Thêm Mói Hợp Đồng</a></li>
                         </ul>
                     </li>
                 </ul>
 
-                <form class="d-flex my-2" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
+                <!--                <form class="d-flex my-2" role="search" >-->
+                <!--                    <input class="form-control me-2" type="search" placeholder="Tìm Kiếm" aria-label="Search">-->
+                <!--                    <button class="btn btn-outline-success" type="submit">-->
+                <!--                        <i class="fa-solid fa-magnifying-glass"></i></button>-->
+                <!--                </form>-->
             </div>
         </div>
     </nav>
 </header>
+
 <div class="container-fluid" style="height: 520px">
     <div class="row" style="margin: 0">
         <div class="col-2 " style="margin: 0">
@@ -196,16 +197,16 @@
         </div>
     </div>
 
-    <div class="container-fluid text-center bg-secondary">
+    <div class="container-fluid text-center bg-secondary" style="width: 99%">
         <div class="text-light p-3" style="height: 100px">&copy;
             <p>Khu nghỉ dưỡng Furama Đà Nẵng là một khu nghỉ dưỡng 5 sao sang trọng, có uy tín và được xem là một trong
-            những biểu tượng của ngành du lịch Việt Nam.
+                những biểu tượng của ngành du lịch Việt Nam.
             </p></div>
-        </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-                crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
 </body>
 </html>

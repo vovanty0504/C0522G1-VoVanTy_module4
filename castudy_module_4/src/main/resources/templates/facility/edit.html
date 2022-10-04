@@ -13,7 +13,7 @@
 <div th:replace="~{/home::header}"></div>
 
 <div class="mx-5 px-5 pt-3">
-    <h2 class="text-center fw-bold text-light">Chỉnh sửa dịch vụ</h2>
+    <h2 class="text-center fw-bold text-light">Chỉnh Sửa Dịch Vụ</h2>
 
     <p class="text-center mt-3"><a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Quay lại trang
         chủ</a></p>
@@ -29,7 +29,7 @@
 
             <input type="hidden" th:field="*{facilityType.facilityTypeId}" readonly/>
             <div class="form-group">
-                <label class="h6">Loại dịch vụ:</label>
+                <label class="h6">Loại Dịch Vụ:</label>
                 <div class="input-group">
                     <input type="text" class="form-control" th:value="${facilityDto.facilityType.facilityTypeName}"
                            readonly style="background-color: #b6bac2"/>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="mt-3 form-group">
-                <label for="name" class="h6">Tên dịch vụ:</label>
+                <label for="name" class="h6">Tên Dịch Vụ:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('facilityName')}" th:errors="*{facilityName}"></p>
                 <div class="input-group">
                     <input type="text" id="name" class="form-control" placeholder="Nhập tên dịch vụ.."
@@ -48,7 +48,7 @@
             </div>
 
             <div class="mt-3 form-group">
-                <label for="area" class="h6">Diện tích sử dụng (m<sup>2</sup>):</label>
+                <label for="area" class="h6">Diện Tích Sử Dụng (m<sup>2</sup>):</label>
                 <p style="color: red" th:if="${#fields.hasErrors('facilityArea')}" th:errors="*{facilityArea}"></p>
                 <div class="input-group">
                     <input type="number" id="area" class="form-control" placeholder="Nhập diện tích sử dụng.."
@@ -58,7 +58,7 @@
             </div>
 
             <div class="mt-3 form-group">
-                <label for="cost" class="h6">Chi phí thuê (VNĐ):</label>
+                <label for="cost" class="h6">Chi Phí Thuê (VNĐ):</label>
                 <p style="color: red" th:if="${#fields.hasErrors('facilityCost')}" th:errors="*{facilityCost}"></p>
                 <div class="input-group">
                     <input type="number" id="cost" class="form-control" placeholder="Nhập chi phí thuê.."
@@ -68,7 +68,7 @@
             </div>
 
             <div class="mt-3 form-group">
-                <label for="maxPeople" class="h6">Số người tối đa:</label>
+                <label for="maxPeople" class="h6">Số Người Tối Đa:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('facilityMaxPeople')}" th:errors="*{facilityMaxPeople}"></p>
                 <div class="input-group">
                     <input type="number" id="maxPeople" class="form-control" placeholder="Nhập số người tối đa.."
@@ -79,7 +79,7 @@
 
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId != 3}">
                 <p style="color: red" th:if="${#fields.hasErrors('facilityStandardRoom')}" th:errors="*{facilityStandardRoom}"></p>
-                <label for="standardRoom" class="h6">Tiêu chuẩn phòng:</label>
+                <label for="standardRoom" class="h6">Tiêu Chuẩn Phòng:</label>
                 <div class="input-group">
                     <input type="text" id="standardRoom" class="form-control" placeholder="Nhập tiêu chuẩn phòng.."
                            th:field="*{facilityStandardRoom}"/>
@@ -90,7 +90,7 @@
                    th:value="${''}"/>
 
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId != 3}">
-                <label for="description" class="h6">Mô tả tiện nghi khác:</label>
+                <label for="description" class="h6">Mô Tả Tiện Nghi Khác:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('facilityDescriptionOtherConvenience')}"
                    th:errors="*{facilityDescriptionOtherConvenience}"></p>
                 <div class="input-group">
@@ -103,7 +103,7 @@
                    th:field="*{facilityDescriptionOtherConvenience}" th:value="${''}"/>
 
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId == 1}">
-                <label for="poolArea" class="h6">Diện tích hồ bơi (m<sup>2</sup>):</label>
+                <label for="poolArea" class="h6">Diện Tích Hồ Bơi (m<sup>2</sup>):</label>
                 <p style="color: red" th:if="${#fields.hasErrors('facilityPoolArea')}" th:errors="*{facilityPoolArea}"></p>
                 <div class="input-group">
                     <input type="number" id="poolArea" class="form-control" placeholder="Nhập diện tích hồ bơi.."
@@ -117,7 +117,7 @@
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId != 3}">
                 <p style="color: red" th:if="${#fields.hasErrors('facilityNumberOfFloors')}"
                    th:errors="*{facilityNumberOfFloors}"></p>
-                <label for="numberOfFloors" class="h6">Số tầng:</label>
+                <label for="numberOfFloors" class="h6">Số Tầng:</label>
                 <div class="input-group">
                     <input type="number" id="numberOfFloors" class="form-control" placeholder="Nhập số tầng.."
                            th:field="*{facilityNumberOfFloors}"/>
@@ -128,7 +128,7 @@
                    th:value="${''}"/>
 
             <div class="mt-3 form-group" th:if="${facilityDto.facilityType.facilityTypeId == 3}">
-                <label for="facilityFree" class="h6">Dịch vụ miễn phí đi kèm:</label>
+                <label for="facilityFree" class="h6">Dịch Vụ Miễn Phí Đi Kèm:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('facilityFree')}" th:errors="*{facilityFree}"></p>
                 <div class="input-group">
                     <input type="text" id="facilityFree" class="form-control"
@@ -140,9 +140,9 @@
                    th:value="${''}"/>
 
             <div class="mt-3 form-group">
-                <label class="h6" for="rentType">Kiểu thuê:</label>
+                <label class="h6" for="rentType">Kiểu Thuê:</label>
                 <div class="input-group">
-                    <select id="rentType" class="form-control" th:field="*{rentType.rentTypeId}">
+                    <select id="rentType" class="form-select" th:field="*{rentType.rentTypeId}">
                         <option th:each="item : ${rentTypeList}" th:value="${item.rentTypeId}"
                                 th:text="${item.rentTypeName}"></option>
                     </select>

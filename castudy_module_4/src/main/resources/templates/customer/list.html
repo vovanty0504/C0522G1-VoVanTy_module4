@@ -27,7 +27,7 @@
 <body>
 <div th:replace="~{/home::header}"></div>
 <div class="p-3">
-    <h2 class="text-center fw-bold">CUSTOMER LIST</h2>
+    <h2 class="text-center fw-bold">DANH SÁCH KHÁCH HÀNG</h2>
     <div th:if="${mess}">
         <div class="justify-content-center d-flex">
             <div class="alert alert-success alert-dismissible fade show w-50 text-center">
@@ -42,19 +42,22 @@
             <a th:href="@{/customer/create}">
                 <button class="btn btn-success btn-outline-secondary btn-sm">
                     <span class="fa-solid fa-person-circle-plus text-light h5 my-auto me-1"></span>
-                    <span class="text-light"> Add new Customer</span>
+                    <span class="text-light"> Thêm Mới Khách Hàng</span>
                 </button>
             </a>
 
             <form class="d-flex my-2" role="search" th:action="@{/customer/list}">
-                <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Tên" aria-label="Search"
+                <input class="form-control me-2" th:value="${nameSearch}" type="text" placeholder="Tìm Kiếm Tên"
+                       aria-label="Search"
                        name="nameSearch">
 
-                <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Địa Chỉ" aria-label="Search"
+                <input class="form-control me-2" type="text" th:value="${addressSearch}" placeholder="Tìm Kiếm Địa Chỉ"
+                       aria-label="Search"
                        name="addressSearch">
 
 
-                <input class="form-control me-2" type="text" placeholder="Tìm Kiến Số Điện Thoại" aria-label="Search"
+                <input class="form-control me-2" type="text" th:value="${phoneSearch}"
+                       placeholder="Tìm Kiến Số Điện Thoại" aria-label="Search"
                        name="phoneSearch">
 
                 <button class="btn btn-outline-success" type="submit" name="action" value="search">
@@ -67,7 +70,7 @@
     <table class="table table-striped table-bordered" id="customerTable">
         <thead>
         <tr>
-            <th >STT</th>
+            <th>STT</th>
             <th>Tên Khách Hàng</th>
             <th>Ngày Sinh</th>
             <th>Giới Tính</th>
@@ -158,7 +161,7 @@
             </div>
 
             <div class="modal-body">
-                <table>
+                <table class="table table-success table-striped">
                     <tr>
                         <td class="h6 pe-3">Tên khách hàng:</td>
                         <td id="name" class="text-primary h6"></td>
@@ -207,14 +210,31 @@
         </div>
     </div>
 </div>
-<div>
-    <a th:href="@{'/customer/list'(page=${customerList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},
-    phoneSearch=${phoneSearch})}" th:if="${customerList.hasPrevious()}">Previous</a>
-    <span th:text="${customerList.number + 1}"></span>/
-    <span th:text="${customerList.totalPages }"></span>
-    <a th:href="@{'/customer/list'(page=${customerList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
-    phoneSearch=${phoneSearch})}" th:if="${customerList.hasNext()}">Next</a>
-</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" th:href="@{'/customer/list'(page=${customerList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},
+    phoneSearch=${phoneSearch})}" th:if="${customerList.hasPrevious()}" aria-label="Previous">
+                <span aria-hidden="true">&laquo; Previous</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" th:text="${customerList.number }"
+                                 th:href="@{'/customer/list'(page=${customerList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},
+    phoneSearch=${phoneSearch})}" th:if="${customerList.hasPrevious()}"></a></li>
+        <li class="page-item"><a class="page-link" th:text="${customerList.number + 1}"></a></li>
+        <li class="page-item"><a class="page-link" th:text="${customerList.number + 2}"
+                                 th:href="@{'/customer/list'(page=${customerList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
+    phoneSearch=${phoneSearch})}" th:if="${customerList.hasNext()}"></a></li>
+        <!--        <li class="page-item"><a class="page-link" th:text="${customerList.totalPages}"></a></li>-->
+        <li class="page-item">
+            <a class="page-link" th:href="@{'/customer/list'(page=${customerList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
+    phoneSearch=${phoneSearch})}" th:if="${customerList.hasNext()}" aria-label="Next">
+                <span aria-hidden="true">Next &raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 <!--<a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Back to HOME</a>-->
 <!--</div>-->
 <script>
@@ -249,7 +269,6 @@
         debugger
     }
 </script>
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

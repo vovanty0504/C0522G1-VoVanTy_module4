@@ -18,20 +18,20 @@
 </head>
 <body>
 <div class="mx-5 px-5 pt-3">
-    <h2 class="text-center fw-bold">Add new Employee</h2>
+    <h2 class="text-center fw-bold">Thêm Mới Nhân Viên</h2>
     <div class="d-flex justify-content-center">
 
         <form class="w-50 border border-info p-3" th:action="@{/employee/save}" th:object="${employeeDto}"
               method="post">
             <div class="form-group">
-                <label for="name" class="h6">Tên Nhân viên:</label>
+                <label for="name" class="h6">Tên Nhân Viên:</label>
                 <p style="color: red" th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}"></p>
                 <input type="text" id="name" class="form-control" placeholder="Nhập Tên: " name="name"
                        th:field="*{employeeName}">
             </div>
 
             <div class="mt-3 form-group">
-                <label for="dateOfBirth" class="h6">Ngày sinh:</label>
+                <label for="dateOfBirth" class="h6">Ngày Sinh:</label>
                 <input type="date" id="dateOfBirth" class="form-control" th:field="*{employeeDateOfBirth}"/>
             </div>
 
@@ -95,7 +95,7 @@
             <div class="mt-3 form-group">
                 <label class="h6" for="division">Bộ Phận:</label>
                 <div class="input-group">
-                    <select id="division" class="form-control" th:field="*{division.divisionId}">
+                    <select id="division" class="form-select" th:field="*{division.divisionId}">
                         <option th:each="item : ${divisionList}" th:value="${item.divisionId}"
                                 th:text="${item.divisionName}"></option>
                     </select>
@@ -104,7 +104,7 @@
             </div>
 
             <div class="mt-3 text-center">
-                <button class="btn btn-info btn-sm">Save</button>
+                <button class="btn btn-info btn-sm">Lưu</button>
             </div>
         </form>
     </div>

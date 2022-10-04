@@ -116,7 +116,8 @@ public class EmployeeController {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         employeeService.update(employee);
-        redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa khách hàng thành công!");
+        redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa khách hàng " +
+             employee.getEmployeeName() +  " thành công!");
         return "redirect:/employee/list";
 
     }

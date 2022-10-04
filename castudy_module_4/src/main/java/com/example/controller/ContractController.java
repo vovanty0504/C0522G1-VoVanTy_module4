@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.model.contract.Contract;
+import com.example.model.contract.ContractDetail;
 import com.example.service.contract.IAttachFacilityService;
 import com.example.service.contract.IContractService;
 import com.example.service.customer.ICustomerService;
@@ -11,7 +13,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/contract")
@@ -39,6 +44,15 @@ public class ContractController {
         model.addAttribute("employeeList", employeeService.findAll());
         model.addAttribute("customerList", customerService.findAll());
         model.addAttribute("contractList", contractService.findAll());
+        model.addAttribute("contract",new Contract());
+        model.addAttribute("contractDetail",new ContractDetail());
         return "contract/list";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes) {
+        contractService.save(contract);
+        redirectAttributes.addFlashAttribute("mess", "Thêm mới hợp đồng thành công!");
+        return "redirect:/contract/list";
     }
 }

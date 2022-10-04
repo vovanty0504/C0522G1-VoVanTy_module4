@@ -27,10 +27,10 @@
 <body>
 <div th:replace="~{/home::header}"></div>
 <div class="p-3">
-    <h2 class="text-center fw-bold">EMPLOYEE LIST</h2>
+    <h2 class="text-center fw-bold">DANH SÁCH NHÂN VIÊN</h2>
     <div th:if="${mess}">
         <div class="justify-content-center d-flex">
-            <div class="alert alert-success alert-dismissible fade show w-50 text-center">
+            <div class="alert alert-success alert-dismissible fade show w-50 text-center ">
                 <strong th:text="${mess}"></strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
@@ -46,13 +46,16 @@
             </button>
 
             <form class="d-flex my-2" role="search" th:action="@{/employee/list}">
-                <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Tên" aria-label="Search"
+                <input class="form-control me-2" type="text" th:value="${nameSearch}" placeholder="Tìm Kiếm Tên"
+                       aria-label="Search"
                        name="nameSearch">
 
-                <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Địa Chỉ" aria-label="Search"
+                <input class="form-control me-2" type="text" th:value="${addressSearch}" placeholder="Tìm Kiếm Địa Chỉ"
+                       aria-label="Search"
                        name="addressSearch">
 
-                <input class="form-control me-2" type="text" placeholder="Tìm Kiếm Số Điện Thoại" aria-label="Search"
+                <input class="form-control me-2" type="text" th:value="${phoneSearch}"
+                       placeholder="Tìm Kiếm Số Điện Thoại" aria-label="Search"
                        name="phoneSearch">
 
                 <button class="btn btn-outline-success" type="submit" name="action" value="search">
@@ -68,10 +71,8 @@
             <th>STT</th>
             <th>Tên Nhân Viên</th>
             <th>Ngày Sinh</th>
-            <th>CCCD/CMND</th>
             <th>Lương</th>
-            <th>Số Điện Thoại</th>
-            <th>Email</th>
+            <th>SĐT</th>
             <th>Địa Chỉ</th>
             <th>Vị Trí</th>
             <th>Bộ Phận</th>
@@ -86,10 +87,8 @@
             <td th:text="${employeeList.number * 5 + status.count}"></td>
             <td th:text="${employee.employeeName}"></td>
             <td th:text="${employee.employeeDateOfBirth}"></td>
-            <td th:text="${employee.employeeIdCard}"></td>
             <td th:text="${employee.employeeSalary}"></td>
             <td th:text="${employee.employeePhoneNumber}"></td>
-            <td th:text="${employee.employeeEmail}"></td>
             <td th:text="${employee.employeeAddress}"></td>
             <td th:if="${employee.employeeId}" th:text="${employee.position.positionName}"></td>
             <td th:unless="${employee.position}"></td>
@@ -174,7 +173,7 @@
             </div>
 
             <div class="modal-body">
-                <table>
+                <table class="table table-success table-striped">
                     <tr>
                         <td class="h6 pe-3">Tên Nhân Viên:</td>
                         <td id="name" class="text-primary h6"></td>
@@ -499,14 +498,30 @@
         </div>
     </div>
 
-    <div>
-        <a th:href="@{'/employee/list'(page=${employeeList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},
-    phoneSearch=${phoneSearch})}" th:if="${employeeList.hasPrevious()}">Previous</a>
-        <span th:text="${employeeList.number + 1}"></span>/
-        <span th:text="${employeeList.totalPages }"></span>
-        <a th:href="@{'/employee/list'(page=${employeeList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
-    phoneSearch=${phoneSearch})}" th:if="${employeeList.hasNext()}">Next</a>
-    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="@{'/employee/list'(page=${employeeList.number - 1}, nameSearch=${nameSearch},
+                addressSearch=${addressSearch},phoneSearch=${phoneSearch})}" th:if="${employeeList.hasPrevious()}" aria-label="Previous">
+                    <span aria-hidden="true"> &laquo; Previous</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" th:text="${employeeList.number }"
+                                     th:href="@{'/employee/list'(page=${employeeList.number - 1}, nameSearch=${nameSearch}, addressSearch=${addressSearch},
+                phoneSearch=${phoneSearch})}"th:if="${employeeList.hasPrevious()}" ></a></li>
+            <li class="page-item"><a class="page-link" th:text="${employeeList.number + 1}"></a></li>
+            <li class="page-item"><a class="page-link" th:text="${employeeList.number + 2}"
+                                     th:href="@{'/employee/list'(page=${employeeList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
+                phoneSearch=${phoneSearch})}" th:if="${employeeList.hasNext()}" ></a></li>
+            <li class="page-item">
+                <a class="page-link" th:href="@{'/employee/list'(page=${employeeList.number + 1},nameSearch=${nameSearch},addressSearch=${addressSearch},
+                phoneSearch=${phoneSearch})}" th:if="${employeeList.hasNext()}" aria-label="Next">
+                    <span aria-hidden="true">Next &raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <!--<a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Back to HOME</a>-->
 </div>
 <script>
