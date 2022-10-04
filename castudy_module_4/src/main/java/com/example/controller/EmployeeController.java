@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.CustomerDto;
 import com.example.dto.EmployeeDto;
 import com.example.model.employee.Division;
 import com.example.model.employee.EducationDegree;
@@ -59,13 +60,25 @@ public class EmployeeController {
         return "employee/list";
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute @Validated EmployeeDto employeeDto,
-                       RedirectAttributes redirectAttributes, Model model) {
-
+    @GetMapping("/create")
+    public String showFormCreate(Model model) {
         model.addAttribute("positionList", positionService.findAll());
         model.addAttribute("divisionList", divisionService.findAll());
         model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+        model.addAttribute("employeeDto", new EmployeeDto());
+        return "employee/create";
+    }
+
+    @PostMapping("/save")
+    public String save(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("positionList", positionService.findAll());
+            model.addAttribute("divisionList", divisionService.findAll());
+            model.addAttribute("educationDegreeList", educationDegreeService.findAll());
+            return "employee/create";
+        }
+
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         employeeService.save(employee);
@@ -93,8 +106,8 @@ public class EmployeeController {
 
     @PostMapping("/update")
     public String updateCustomer(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes,Model model ) {
-        if(bindingResult.hasFieldErrors()){
+                                 RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasFieldErrors()) {
             model.addAttribute("positionList", positionService.findAll());
             model.addAttribute("divisionList", divisionService.findAll());
             model.addAttribute("educationDegreeList", educationDegreeService.findAll());
@@ -103,7 +116,7 @@ public class EmployeeController {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         employeeService.update(employee);
-        redirectAttributes.addFlashAttribute("message", "Chỉnh sửa khách hàng thành công!");
+        redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa khách hàng thành công!");
         return "redirect:/employee/list";
 
     }

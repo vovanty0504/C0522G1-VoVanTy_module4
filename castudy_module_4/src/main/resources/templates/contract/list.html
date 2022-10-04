@@ -75,8 +75,7 @@
             <th>Ngày Kết Thúc</th>
             <th>Tiền Cọc</th>
             <th>Tổng Tiền</th>
-            <th>Thêm Mới</th>
-            <th>Danh Sách Dịch Vụ Đi Kèm</th>
+            <th class="text-center">Các Dịch Vụ Đi Kèm</th>
 
         </tr>
         </thead>
@@ -90,43 +89,24 @@
             <td th:text="${contract.endDate}"></td>
             <td th:text="${contract.deposit}"></td>
             <td th:text="${contract.totalMoney}"></td>
-<!--            <td th:text="${'₫ ' + contract.totalMoney}"></td>-->
+            <td class="text-center">
+                <button
+                        class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#addContractdetail">
+                    <span class="fa-solid fa-plus text-light h6 m-auto"></span>
+                </button>
 
-            <!--            <td th:if="${employee.employeeId}" th:text="${employee.position.positionName}"></td>-->
-<!--            <td th:unless="${employee.position}"></td>-->
-<!--            <td th:if="${employee.employeeId}" th:text="${employee.division.divisionName}"></td>-->
-<!--            <td th:unless="${employee.division}"></td>-->
-<!--            <td th:if="${employee.employeeId}" th:text="${employee.educationDegree.educationDegreeName}"></td>-->
-<!--            <td th:unless="${employee.educationDegree}"></td>-->
+                <button
+                        class="btn btn-primary btn-outline-secondary btn-sm ms-3 px-3" data-bs-toggle="modal"
+                        data-bs-target="#showAttachFacility">
+                    <span class="text-light m-auto">Danh sách dịch vụ đi kèm</span>
+                </button>
+            </td>
 
         </tr>
         </tbody>
     </table>
 
-    <div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel1">Bạn có chắc chắn muốn xóa?</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <form th:action="@{/contract/delete}">
-                    <div class="modal-body">
-                        <span class="h6">Khách hàng:</span><strong id="nameDelete" class="text-danger ps-2"></strong>
-                        <input type="hidden" name="idDelete" id="idDelete" readonly/>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-danger" value="delete">Xóa</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" id="viewCustomer" tabindex="-1" aria-labelledby="exampleModalLabel1"
      aria-hidden="true">

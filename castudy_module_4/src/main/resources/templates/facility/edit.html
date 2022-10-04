@@ -42,9 +42,7 @@
                 <p style="color: red" th:if="${#fields.hasErrors('facilityName')}" th:errors="*{facilityName}"></p>
                 <div class="input-group">
                     <input type="text" id="name" class="form-control" placeholder="Nhập tên dịch vụ.."
-                           th:field="*{facilityName}" required
-                           pattern="^([\p{Lu}][\p{Ll}]{1,8})(\s([\p{Lu}]|[\p{Lu}][\p{Ll}]{1,10})){0,5}( \d*)?$"
-                           title="Tên dịch vụ được phép chứa số và các kí tự đầu tiên của mỗi từ phải viết hoa."/>
+                           th:field="*{facilityName}"/>
                     <span class="input-group-text"><i class="fa-solid fa-file-signature"></i></span>
                 </div>
             </div>
@@ -54,8 +52,7 @@
                 <p style="color: red" th:if="${#fields.hasErrors('facilityArea')}" th:errors="*{facilityArea}"></p>
                 <div class="input-group">
                     <input type="number" id="area" class="form-control" placeholder="Nhập diện tích sử dụng.."
-                           th:field="*{facilityArea}" required pattern="^[1-9]\d*$"
-                           title="Diện tích sử dụng phải là số nguyên dương."/>
+                           th:field="*{facilityArea}" />
                     <span class="input-group-text"><i class="fa-solid fa-chart-area"></i></span>
                 </div>
             </div>
@@ -65,8 +62,7 @@
                 <p style="color: red" th:if="${#fields.hasErrors('facilityCost')}" th:errors="*{facilityCost}"></p>
                 <div class="input-group">
                     <input type="number" id="cost" class="form-control" placeholder="Nhập chi phí thuê.."
-                           th:field="*{facilityCost}" required pattern="^[1-9]\d*$"
-                           title="Chi phí thê phải là số nguyên dương."/>
+                           th:field="*{facilityCost}"/>
                     <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
                 </div>
             </div>
@@ -76,8 +72,7 @@
                 <p style="color: red" th:if="${#fields.hasErrors('facilityMaxPeople')}" th:errors="*{facilityMaxPeople}"></p>
                 <div class="input-group">
                     <input type="number" id="maxPeople" class="form-control" placeholder="Nhập số người tối đa.."
-                           th:field="*{facilityMaxPeople}" required pattern="^[1-9]\d*$"
-                           title="Số người tối đa phải là số nguyên dương."/>
+                           th:field="*{facilityMaxPeople}"/>
                     <span class="input-group-text"><i class="fa-solid fa-person"></i></span>
                 </div>
             </div>
