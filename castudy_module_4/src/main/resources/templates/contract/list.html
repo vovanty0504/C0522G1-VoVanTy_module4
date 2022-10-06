@@ -144,7 +144,7 @@
 
 
     <table class="table table-striped table-bordered" id="customerTable">
-        <thead>
+        <thead class="table-dark">
         <tr>
             <th>STT</th>
             <th>Dịch Vụ</th>
@@ -160,7 +160,7 @@
         </thead>
         <tbody>
         <tr th:each="contract,status:${contractList}">
-            <td th:text="${status.count}"></td>
+            <td th:text="${contractList.number * 5 + status.count}"></td>
             <td th:text="${contract.facilityName}"></td>
             <td th:text="${contract.employeeName}"></td>
             <td th:text="${contract.customerName}"></td>
@@ -237,9 +237,32 @@
     </div>
 </div>
 
-    <script>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link"
+               th:href="@{'/contract/list'(page=${contractList.number - 1})}"
+               th:if="${contractList.hasPrevious()}" aria-label="Previous">
+                <span aria-hidden="true">&laquo; Previous</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" th:text="${contractList.number }"
+                                 th:href="@{'/contract/list'(page=${contractList.number - 1})}"
+                                 th:if="${contractList.hasPrevious()}"></a></li>
+        <li class="page-item"><a class="page-link" th:text="${contractList.number + 1}"></a></li>
+        <li class="page-item"><a class="page-link" th:text="${contractList.number + 2}"
+                                 th:href="@{'/contract/list'(page=${contractList.number + 1})}"
+                                 th:if="${contractList.hasNext()}"></a></li>
 
-    </script>
+        <li class="page-item">
+            <a class="page-link" th:href="@{'/contract/list'(page=${contractList.number + 1})}"
+               th:if="${contractList.hasNext()}" aria-label="Next">
+                <span aria-hidden="true">Next &raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
 
     <script src="jquery/jquery-3.5.1.min.js"></script>
     <script src="datatables/js/jquery.dataTables.min.js"></script>

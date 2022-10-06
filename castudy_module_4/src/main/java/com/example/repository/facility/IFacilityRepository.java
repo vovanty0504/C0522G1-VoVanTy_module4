@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Transactional
 public interface IFacilityRepository extends JpaRepository<Facility, Integer> {
 
-    @Query(value = "select * from facility where facility_name like %:nameSearch% and is_delete = false", nativeQuery = true)
+    @Query(value = "select * " +
+            "from facility " +
+            "where facility_name " +
+            "like %:nameSearch% " +
+            "and is_delete = false", nativeQuery = true)
     Page<Facility> searchFacility(@RequestParam("nameSearch") String nameSearch, Pageable pageable);
+
 
     @Modifying
     @Query(value = "update facility set is_delete = true where facility_id = :idDelete", nativeQuery = true)

@@ -18,13 +18,14 @@ public class ContractService implements IContractService {
     private IContractRepository contractRepository;
 
 
-//    @Override
-//    public Page<IContractDto> findAll(Pageable pageable) {
-//        return contractRepository.findAllDto(pageable);
-//    }
-    public List<IContractDto> findAll( ) {
-        return contractRepository.findAllDto();
+    @Override
+    public Page<IContractDto> findAll(Pageable pageable) {
+        return contractRepository.findAllDto(pageable);
     }
+
+//    public List<IContractDto> findAll( ) {
+//        return contractRepository.findAllDto();
+//    }
 
     @Override
     public void save(Contract contract) {

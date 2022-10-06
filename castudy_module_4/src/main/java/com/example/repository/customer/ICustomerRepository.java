@@ -8,13 +8,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import javax.transaction.Transactional;
 
 @Transactional
-public interface ICustomerRepository extends JpaRepository<Customer,Integer> {
+public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 
-    @Query(value = "select * from customer where customer_name like %:nameSearch% and " +
-            "customer_address like %:addressSearch% and customer_phone_number like %:phoneSearch% and is_delete = false",
+    @Query(value = "select * " +
+            "from customer " +
+            "where customer_name " +
+            "like %:nameSearch% " +
+            "and customer_address " +
+            "like %:addressSearch% " +
+            "and customer_phone_number " +
+            "like %:phoneSearch% " +
+            "and is_delete = false",
             nativeQuery = true)
     Page<Customer> searchCustomer(@Param("nameSearch") String nameSearch,
                                   @Param("addressSearch") String addressSearch,

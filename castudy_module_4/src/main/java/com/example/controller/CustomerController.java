@@ -53,33 +53,33 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute @Validated CustomerDto customerDto, BindingResult bindingResult,
-                       RedirectAttributes redirectAttributes,Model model) {
+    public String saveCustomer(@ModelAttribute @Validated CustomerDto customerDto, BindingResult bindingResult,
+                       RedirectAttributes redirectAttributes, Model model) {
 
         if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypes = customerTypeService.findAll();
-            model.addAttribute("customerType",customerTypes);
+            model.addAttribute("customerType", customerTypes);
             return "customer/create";
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
             customerService.save(customer);
             redirectAttributes.addFlashAttribute("mess", customer.getCustomerName() +
-                    " thêm mới thành công");
+                    " Thêm Mới Thành Công!");
             return "redirect:/customer/list";
         }
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam(value = "idDelete") Integer id, RedirectAttributes redirectAttributes) {
+    public String deleteCustomer(@RequestParam(value = "idDelete") Integer id, RedirectAttributes redirectAttributes) {
         customerService.deleteLogical(id);
-        redirectAttributes.addFlashAttribute("mess", "xóa khách hàng" +
-                customerService.findById(id).get().getCustomerName() + "  thành công");
+        redirectAttributes.addFlashAttribute("mess", "Xóa Khách Hàng" +
+                customerService.findById(id).get().getCustomerName() + "  Thành Công!");
         return "redirect:/customer/list";
     }
 
     @GetMapping("/edit/{id}")
-    public String showFormEdit(@PathVariable Integer id, Model model) {
+    public String showFormEditCustomer(@PathVariable Integer id, Model model) {
         model.addAttribute("customerType", customerTypeService.findAll());
         model.addAttribute("customerDto", customerService.findById(id).get());
         return "customer/edit";
@@ -90,13 +90,14 @@ public class CustomerController {
                                  RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasFieldErrors()) {
             List<CustomerType> customerTypes = customerTypeService.findAll();
-            model.addAttribute("customerType",customerTypes);
+            model.addAttribute("customerType", customerTypes);
             return "customer/edit";
         } else {
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
             customerService.update(customer);
-            redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa khách hàng thành công!");
+            redirectAttributes.addFlashAttribute("mess", "Chỉnh Sửa Khách Hàng" +
+                    customer.getCustomerName() + " Thành Công!");
             return "redirect:/customer/list";
         }
     }

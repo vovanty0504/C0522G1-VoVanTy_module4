@@ -15,15 +15,10 @@
 <div class="mx-5 px-5 pt-3">
     <h2 class="text-center fw-bold text-light">Chỉnh Sửa Dịch Vụ</h2>
 
-    <p class="text-center mt-3"><a th:href="@{/}"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Quay lại trang
-        chủ</a></p>
 
-    <p class="text-center">
-        <a th:href="@{/facility/list}"><i class="fa-solid fa-backward"></i> Quay lại trang danh sách dịch vụ</a>
-    </p>
 
     <div class="d-flex justify-content-center">
-        <form class="w-50 border border-2 border-success p-3 rounded formCSS" th:action="@{/facility/update}"
+        <form class="w-50 border border-2 border-success p-3 rounded formCSS" action="/facility/update"
               th:object="${facilityDto}" method="POST">
             <input type="hidden" th:field="*{facilityId}" readonly/>
 
@@ -156,8 +151,15 @@
                 </button>
             </div>
         </form>
+
     </div>
 </div>
+<p class="text-center">
+    <a th:href="@{/facility/list}"><i class="fa-solid fa-backward"></i> Quay lại trang danh sách dịch vụ</a>
+</p>
+
+<p class="text-center mt-3"><a href="/"><i class="fa-solid fa-house-chimney h5 mx-1"></i> Quay lại trang
+    chủ</a></p>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

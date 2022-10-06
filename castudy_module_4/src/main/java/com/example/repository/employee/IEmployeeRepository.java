@@ -11,10 +11,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public interface IEmployeeRepository extends JpaRepository<Employee,Integer> {
+public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    @Query(value = "select * from employee where employee_name like %:nameSearch% and " +
-            "employee_address like %:addressSearch% and employee_phone_number like %:phoneSearch% and is_delete = false",
+    @Query(value = "select * " +
+            "from employee " +
+            "where employee_name " +
+            "like %:nameSearch% " +
+            "and employee_address " +
+            "like %:addressSearch% " +
+            "and employee_phone_number " +
+            "like %:phoneSearch% " +
+            "and is_delete = false",
             nativeQuery = true)
     Page<Employee> searchEmployee(@Param("nameSearch") String nameSearch,
                                   @Param("addressSearch") String addressSearch,

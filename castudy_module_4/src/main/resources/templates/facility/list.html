@@ -60,16 +60,16 @@
     </nav>
 
 
-    <table class="table table-striped table-bordered" id="facilityTable">
-        <thead>
+    <table class="table table-striped table-bordered" id="facilityTable " >
+        <thead class="table-dark">
         <tr>
             <th>STT</th>
-            <th>Tên Cơ Sở</th>
+            <th>Tên Dịch Vụ</th>
             <th>Diện Tích</th>
-            <th>Phí</th>
+            <th>Phí Thuê</th>
             <th>Số Người</th>
             <th>Diện Tích Hồ Bơi</th>
-            <th>Cơ Sở Miễn Phí</th>
+            <th>Dịch Vụ Miễn Phí</th>
             <th>Loại Thuê</th>
             <th>Sửa</th>
             <th>Xóa</th>
@@ -217,8 +217,8 @@
     </div>
 </div>
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
+<nav aria-label="Page navigation example " >
+    <ul class="pagination justify-content-center">
         <li class="page-item">
             <a class="page-link"
                th:href="@{'/facility/list'(page=${facilityList.number - 1}, nameSearch=${nameSearch})}"
@@ -226,8 +226,6 @@
                 <span aria-hidden="true">&laquo; Previous</span>
             </a>
         </li>
-<!--        <li class="page-item"><a class="page-link" th:text="${facilityList.number +1}"></a></li>-->
-
         <li class="page-item"><a class="page-link" th:text="${facilityList.number }"
                                  th:href="@{'/facility/list'(page=${facilityList.number - 1}, nameSearch=${nameSearch})}"
                                  th:if="${facilityList.hasPrevious()}"></a></li>

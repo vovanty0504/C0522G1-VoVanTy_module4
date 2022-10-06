@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.IContractDto;
 import com.example.model.contract.Contract;
 import com.example.model.contract.ContractDetail;
 import com.example.service.contract.IAttachFacilityService;
@@ -9,6 +10,7 @@ import com.example.service.customer.ICustomerService;
 import com.example.service.employee.IEmployeeService;
 import com.example.service.facility.IFacilityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -39,19 +41,20 @@ public class ContractController {
     private IContractDetailService contractDetailService;
 
     @GetMapping("/list")
-    public String showList(@PageableDefault(value = 2) Pageable pageable, Model model) {
+    public String showList(@PageableDefault(value = 5) Pageable pageable, Model model) {
+        Page<IContractDto> contractList = contractService.findAll(pageable);
         model.addAttribute("attachFacilityList", attachFacilityService.findAll());
         model.addAttribute("facilityList", facilityService.findAll());
         model.addAttribute("employeeList", employeeService.findAll());
         model.addAttribute("customerList", customerService.findAll());
-        model.addAttribute("contractList", contractService.findAll());
+        model.addAttribute("contractList", contractList);
         model.addAttribute("contract", new Contract());
         model.addAttribute("contractDetail", new ContractDetail());
         return "contract/list";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes) {
+    public String saveContract(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes) {
         contractService.save(contract);
         redirectAttributes.addFlashAttribute("mess", "Thêm mới hợp đồng thành công!");
         return "redirect:/contract/list";
@@ -61,14 +64,12 @@ public class ContractController {
     public String saveDetail(@ModelAttribute ContractDetail contractDetail, RedirectAttributes redirectAttributes) {
         contractDetailService.save(contractDetail);
         redirectAttributes.addFlashAttribute("message", "Thêm mới hợp đồng chi tiết thành công!");
-
         return "redirect:/contract/list";
     }
 
     @GetMapping("/{id}")
     public String showAttachFacility(@PathVariable Integer id, Model model) {
         model.addAttribute("contractDetails", contractDetailService.showAll(id));
-
         return "contract/attach_list";
     }
 }

@@ -26,6 +26,7 @@ public class FacilityDto {
     @NotBlank(message = "Số người tối đa không được để trống.")
     @Pattern(regexp = "^[1-9]\\d*| *$", message = "Số người tối đa phải là số nguyên dương.")
     private String facilityMaxPeople;
+    
     private String facilityStandardRoom;
     private String facilityDescriptionOtherConvenience;
 

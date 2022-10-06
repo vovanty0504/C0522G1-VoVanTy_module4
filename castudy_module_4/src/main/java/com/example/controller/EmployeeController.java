@@ -70,7 +70,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
+    public String saveEmployee(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
                        RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("positionList", positionService.findAll());
@@ -83,15 +83,15 @@ public class EmployeeController {
         BeanUtils.copyProperties(employeeDto, employee);
         employeeService.save(employee);
         redirectAttributes.addFlashAttribute("mess", employee.getEmployeeName() +
-                " thêm mới thành công");
+                " Thêm Mới Thành Công!");
         return "redirect:/employee/list";
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam(value = "idDelete") Integer id, RedirectAttributes redirectAttributes) {
+    public String deleteEmployee(@RequestParam(value = "idDelete") Integer id, RedirectAttributes redirectAttributes) {
         employeeService.deleteLogical(id);
-        redirectAttributes.addFlashAttribute("mess", "xóa khách hàng" +
-                employeeService.findById(id).get().getEmployeeName() + " thành công");
+        redirectAttributes.addFlashAttribute("mess", "Xóa Nhân Viên " +
+                employeeService.findById(id).get().getEmployeeName() + " Thành Công!");
         return "redirect:/employee/list";
     }
 
@@ -105,7 +105,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/update")
-    public String updateCustomer(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
+    public String updateEmployee(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("positionList", positionService.findAll());
@@ -116,8 +116,8 @@ public class EmployeeController {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         employeeService.update(employee);
-        redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa khách hàng " +
-             employee.getEmployeeName() +  " thành công!");
+        redirectAttributes.addFlashAttribute("mess", "Chỉnh Sửa Khách Kàng " +
+             employee.getEmployeeName() +  " Thành Công!");
         return "redirect:/employee/list";
 
     }

@@ -11,8 +11,10 @@ import java.util.List;
 
 public interface IContractService {
 
-//    Page<IContractDto> findAll(Pageable pageable);
-    List<IContractDto> findAll();
+    Page<IContractDto> findAll(Pageable pageable);
+
+
+//    List<IContractDto> findAll();
 
     void save(Contract contract);
 
