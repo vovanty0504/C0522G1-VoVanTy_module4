@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/layout :: head"></head>-->
+<body>
+<h3>ADD NEW CINEMA</h3>
+
+<p>
+    <a th:href="@{/}">
+        Back to  home
+    </a>
+</p>
+<div id="form">
+    <form action="#" th:action="@{/save}" th:object="${cinemaDto}"
+          method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{cinemaId}"/>
+
+        <div>
+            <label>Cinema name</label>
+            <p style="color: red" th:if="${#fields.hasErrors('cinemaName')}" th:errors="*{cinemaName}"></p>
+            <input type="text" th:field="*{cinemaName}"/>
+        </div>
+        <div>
+            <label>Cinema Code</label>
+            <p style="color:red;" th:if="${#fields.hasErrors('cinemaCode')}" th:errors="*{cinemaCode}"></p>
+            <input type="text" th:field="*{cinemaCode}"/>
+        </div>
+
+        <div>
+            <label>Amounts</label>
+            <p style="color: red" th:if="${#fields.hasErrors('cinemaAmounts')}" th:errors="*{cinemaAmounts}"></p>
+            <input type="text" th:field="*{cinemaAmounts}"/>
+        </div>
+
+        <div>
+            <label>Date</label>
+            <p style="color: red" th:if="${#fields.hasErrors('cinemaDate')}" th:errors="*{cinemaDate}"></p>
+            <input type="date" th:field="*{cinemaDate}"
+                   th:min="${minAge}"/>
+        </div>
+
+        <input type="submit" value="ADD"/>
+    </form>
+</div>
+</body>
+</html>

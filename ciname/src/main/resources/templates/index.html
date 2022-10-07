@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="/layout :: head">-->
+
+</head>
+<body>
+<h3>CINEMAS</h3>
+<div th:if="${success}">
+    <p style="color: violet" th:text="${success}">
+    </p>
+</div>
+<form>
+    <input placeholder="Search by Title..." name="search" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+<p>
+    <a th:href="@{/create}">
+        Add new blog
+    </a>
+</p>
+
+<table id="products" border="1" cellpadding="10">
+    <thead>
+    <tr>
+        <th>SST</th>
+        <th>Cinema Name</th>
+        <th>Cinema Code</th>
+        <th>Date</th>
+        <!--            <th>Film Name</th>-->
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cinema,status : ${cinemaList}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${cinema.cinemaName}"></td>
+        <td th:text="${cinema.cinemaCode}"></td>
+        <td th:text="${cinema.cinemaDate}"></td>
+        <!--        <td th:text="${cinema.film.filmName}"></td>-->
+        <td><a th:href="@{/delete/__${cinema.cinemaId}__}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<!--<div>-->
+<!--    <a th:href="@{'/blog'(page=${cinemaList.number - 1}, search=${search})}" th:if="${cinemaList.hasPrevious()}">Previous</a>-->
+<!--    <span th:text="${cinemaList.number + 1}"></span>/<span th:text="${blogs.totalPages}"></span>-->
+<!--    <a th:href="@{'/blog'(page=${cinemaList.number + 1}, search=${search})}" th:if="${cinemaList.hasNext()}">Next</a>-->
+<!--</div>-->
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h3>REMOVE CINEMA</h3>
+<p>
+    <a th:href="@{/cinema}">
+        Back to  home
+    </a>
+</p>
+
+    <form th:action="@{/delete}" th:object="${cinemaDelete}"
+          method="GET" novalidate="novalidate">
+        <input type="text" th:field="*{cinemaId}"/>
+        <div>
+            <label>Cinema name</label>
+            <input type="text" th:field="*{cinemaName}"/>
+        </div>
+        <div>
+            <label>Cinema Code</label>
+            <input type="text" th:field="*{cinemaCode}"/>
+        </div>
+        <div>
+            <label>Amounts</label>
+            <input type="text" th:field="*{cinemaAmounts}"/>
+        </div>
+        <input  type="submit" value="Remove"/>
+    </form>
+
+</body>
+</html>
