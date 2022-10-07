@@ -32,12 +32,14 @@ public class CinemaController {
     }
 
 
-//    hàm của anh em viết lại hàm delete bằng modal
 //    @GetMapping("/delete/{id}")
 //    public String showDeleteCinema(@PathVariable  Integer id, Model model){
 //        model.addAttribute("cinema", iCinemaService.findById(id));
 //        return "/delete";
 //    }
+
+
+    // xóa bằng cách chuyển trang thì k dúng @RequestParam nha anh. làm theo như em!
 //    @GetMapping("/delete")
 //    public String deleteCinema(@RequestParam(value = "cinemaId") Integer id, Model model){
 //        iCinemaService.delete(id);
@@ -69,6 +71,10 @@ public class CinemaController {
         return "/create";
     }
 
+    //lưu ý
+    // thiếu anition @validated thì k valition đc nha
+    // thứ tự là (@ModelAttribute @Validated CinemaDto cinemaDto,BindingResult bindingResult viết k đúng thứ tự
+    // thì sẻ bị lỗi nha
     @PostMapping("/save")
     public String saveCinema(@ModelAttribute @Validated CinemaDto cinemaDto,
                              BindingResult bindingResult,
