@@ -38,6 +38,7 @@ public class EmployeeDto {
 
     @NotBlank(message = "Địa chỉ không được để trống.")
     private String employeeAddress;
+
     private Position position;
     private EducationDegree educationDegree;
     private Division division;

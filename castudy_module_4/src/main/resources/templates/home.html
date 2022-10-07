@@ -36,17 +36,17 @@
              alt="">
 
         <div class="container-fluid text-end my-4 me-4" >
-            <span class="badge text-bg-warning mt-3" style="font-size: 15px"> Võ Văn Tý
-<!--                <div sec:authorize="isAuthenticated()">-->
-<!--                <h6 sec:authentication="principal.username" > </h6>-->
-<!--                </div>-->
+            <span class="badge text-bg-warning mt-3" style="font-size: 15px">
+                <div sec:authorize="isAuthenticated()">
+                <h6 sec:authentication="principal.username" ></h6>
+                </div>
             </span>
 
-<!--            <a  th:href="@{/logout}">-->
-<!--                <button class="btn btn-danger btn-outline-secondary text-light" style="margin-top: 2px">-->
-<!--                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng Xuất-->
-<!--                </button>-->
-<!--            </a>-->
+            <a  href="/logout">
+                <button class="btn btn-danger btn-outline-secondary text-light" style="margin-top: 2px">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng Xuất
+                </button>
+            </a>
         </div>
     </div>
 

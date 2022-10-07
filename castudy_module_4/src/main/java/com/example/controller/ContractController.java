@@ -60,6 +60,7 @@ public class ContractController {
         return "redirect:/contract/list";
     }
 
+
     @PostMapping("/add-contract-detail")
     public String saveDetail(@ModelAttribute ContractDetail contractDetail, RedirectAttributes redirectAttributes) {
         contractDetailService.save(contractDetail);

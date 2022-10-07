@@ -2,11 +2,13 @@ package com.example.dto;
 
 import com.example.model.facility.FacilityType;
 import com.example.model.facility.RentType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-public class FacilityDto {
+public class FacilityDto implements Validator {
 
     private Integer facilityId;
 
@@ -154,5 +156,15 @@ public class FacilityDto {
 
     public void setRentType(RentType rentType) {
         this.rentType = rentType;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

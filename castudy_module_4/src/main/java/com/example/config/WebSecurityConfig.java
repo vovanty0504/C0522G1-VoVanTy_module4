@@ -31,6 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+
         http.csrf().disable()
                 .formLogin()
                 .loginPage("/login")
@@ -38,20 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().
                 antMatchers("/").permitAll()
-//                .antMatchers("**/list", "**/list", "**/list", "**/list")
-//                .hasAnyRole("USER")
-//                .antMatchers("/customer/**", "/employee/**", "/facility/**","contract/**")
-//                .hasAnyRole("ADMIN")
+                .antMatchers("/*/create", "*/delete", "/*/update", "/*/edit/*", "*/update")
+                .hasAnyRole("ADMIN")
                 .anyRequest().authenticated();
-//        http.csrf().disable()
-//                .formLogin()
-//                .loginPage("/login")
-//                .defaultSuccessUrl("/").permitAll()
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/home").permitAll()
-//                .antMatchers("employee/list", "facility/list", "customer/list", "contract/list").hasAnyRole("USER")
-//                .antMatchers("/customer/**", "/employee/**", "/facility/**","contract/**").hasAnyRole("ADMIN")
-//                .anyRequest().authenticated();
+
     }
 }
